@@ -2,19 +2,19 @@
   <footer class="footer">
     <nav>
       <nuxt-link to="/">Home</nuxt-link>
-      <nuxt-link to="/sessions">Sessions</nuxt-link>
+      <nuxt-link to="/conferenceSessions">Sessions</nuxt-link>
       <nuxt-link to="/speakers">Speakers</nuxt-link>
       <nuxt-link to="/code-of-conduct">Code of conduct</nuxt-link>
-      <a v-if="eventInformation.venue" :href="eventInformation.ticket"
+      <a v-if="conference.venue" :href="conference.ticket"
         >Tickets
       </a>
     </nav>
-    <address v-if="eventInformation.venue" class="venue">
-      <div>{{ eventInformation.venue.name }}</div>
+    <address v-if="conference.venue" class="venue">
+      <div>{{ conference.venue.name }}</div>
       <div>
-        {{ eventInformation.venue.postCode }} {{ eventInformation.venue.city }}
+        {{ conference.venue.postCode }} {{ conference.venue.city }}
       </div>
-      <div>{{ eventInformation.venue.country }}</div>
+      <div>{{ conference.venue.country }}</div>
     </address>
     <div class="power">
       Powered by <a href="https://nuxtjs.org">Nuxt.js</a> and
@@ -37,7 +37,7 @@ export default {
     }
     return {
       year: new Date().getFullYear(),
-      eventInformation: data.$store.state.eventInformation
+      conference: data.$store.state.conference
     }
   }
 }

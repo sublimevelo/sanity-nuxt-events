@@ -1,19 +1,21 @@
-import {isSameDay} from 'date-fns'
+// import { isSameDay } from 'date-fns'
+import { add } from 'date-fns'
+import { format } from 'date-fns'
+
+const notSameDayErrorMsg =
+  'Ensure start and end times are on the same day! Enter multiple schedules for multi-day events.'
 
 export default {
   name: 'schedule',
   type: 'object',
   title: 'Schedule',
-  validation: Rule =>
-    Rule.custom(schedule => {
-      /**
-       * Currently the frontend only supports one-day events.
-       * Nothing keeps you from tweaking it though. You can then
-       * refactor this validation to make sure that the from
-       * date is before the to date and so on.
-       */
-      return isSameDay(schedule.from, schedule.to) || 'Only one-day events are supported'
-    }),
+  // validation: Rule =>
+  //   Rule.custom(schedule => {
+  //     if (typeof schedule === 'undefined') {
+  //       return true // Allow undefined values
+  //     }
+  //     return isSameDay(schedule.from, schedule.to) || notSameDayErrorMsg
+  //   }),
   fields: [
     {
       name: 'from',
@@ -21,9 +23,23 @@ export default {
       title: 'From'
     },
     {
-      name: 'to',
-      type: 'datetime',
-      title: 'To'
+      name: 'duration',
+      type: 'number',
+      title: 'Duration (in minutes)'
     }
-  ]
+  ],
+  preview: {
+    select: {
+      from: 'from',
+      duration: 'duration'
+    },
+    prepare({ from, to }) {
+      const f = format(from, 'MMMM DD, ha')
+      const t = format(add(from, { minutes: duration }), 'ha')
+      // const t = format(to, 'ha')
+      return {
+        title: `${f} - ${t}`
+      }
+    }
+  }
 }

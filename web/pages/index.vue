@@ -1,145 +1,109 @@
 <template>
-  <section class="container">
-    <header class="header">
-      <h1 class="title">{{ info.name }}</h1>
-      <p class="subtitle">{{ info.description }}</p>
-      <div class="dates">
-        {{ new Date(info.schedule.from) | dateFilter('DD MMMM ha') }}
-        &ndash;
-        {{ new Date(info.schedule.to) | dateFilter('ha') }}
-      </div>
-      <div class="venue">{{ info.venue.name }}, {{ info.venue.city }}</div>
-    </header>
-
-    <figure :v-if="info.image">
-      <SanityImage
-        :image="info.image"
-        :width="1800"
-        :height="500"
-        class="mainImage"
-      />
-      <figcaption>{{ info.image.caption }}</figcaption>
-    </figure>
-
-    <div class="sessionListContainer">
-      <h2 class="sessionListTitle">Schedule</h2>
-      <SessionList :program="program" :info="info" />
-    </div>
-  </section>
+  <b-row>
+    <b-col sm="12">
+      <!-- <section v-if="info._id"> -->
+      <header class="header">
+        <h1 class="title">{{ info.name }}</h1>
+        <p class="subtitle">{{ info.blurb }}</p>
+        <!-- <BlockContent :blocks="info.description" :serializers="serializers" /> -->
+        <BlockContent :blocks="info.description" />
+      </header>
+      <SeriesSessionList :sessions="info.program" />
+      <!-- {{ info }} -->
+      <MoreInfoForm />
+      <!-- </section>
+      <section v-else>
+        <h2>No event data is available</h2>
+      </section> -->
+    </b-col>
+  </b-row>
 </template>
 
 <script>
-import { dateFilter } from 'vue-date-fns'
-
 import sanityClient from '../sanityClient'
 import SanityImage from '~/components/SanityImage'
-import SessionList from '~/components/SessionList'
+import BlockContent from 'sanity-blocks-vue-component'
+import SeriesSessionList from '~/components/series/SeriesSessionList'
+import MoreInfoForm from '~/components/forms/MoreInfoForm'
 
-const query = `
-  {
-    "info": *[_id == "eventInformation"] {
-      ..., image { ..., asset->}
-    }[0]
-  }
+import { filter, sortBy } from 'lodash'
+import add from 'date-fns/add'
+
+// groq can't deep filter on arrays, so we'll need to filter out dates in script :(
+const queryCurrentSeries = `
+{
+  "info": *[_type == "series" && slug.current == "connections-minis"][0] {
+		...,
+        _id,
+        image { ..., asset->},
+            organizers[]->,
+            program[] {
+            session-> {
+                ...,
+                persons[] {
+                ...,
+                  person-> {
+                    ...,
+                  }
+                }
+            }
+        }
+	}
+}
 `
 
 export default {
   components: {
+    SeriesSessionList,
     SanityImage,
-    SessionList
+    BlockContent,
+    MoreInfoForm
+    // SessionList
   },
-  filters: {
-    dateFilter
+  mounted() {
+    // use $dateCalc plugin to set up start time for each program conferenceSession
+    // this.$dateCalc(this.info.program, new Date())
+    // make sure we have data to work with!
+    // console.log('data?')
+    // console.log(this.data)
   },
-  data() {
-    return {
-      program: this.$store.getters.getProgram
-    }
-  },
+  // filters: {
+  //   dateFilter
+  // },
+  // data() {
+  //   return {
+  //     haveInfo: false
+  //   }
+  // },
   async asyncData() {
-    return await sanityClient.fetch(query)
-  },
-  head() {
-    if (!this || !this.info) {
-      return
-    }
-    return {
-      title: this.info.name,
-      meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: this.info.description
-        },
-        {
-          hid: 'keywords',
-          name: 'keywords',
-          content: this.info.keywords.join(',')
-        }
-      ]
-    }
+    let data = await sanityClient.fetch(queryCurrentSeries)
+    // filter out sessions more than three days old and sort by start dt
+    data.info.program = sortBy(
+      filter(data.info.program, function(session) {
+        return (
+          add(new Date(session.session.schedule.from), { days: 3 }) > new Date()
+        )
+      }),
+      'from'
+    )
+    return data
   }
+  // head() {
+  //   if (!this.haveInfo) {
+  //     return
+  //   }
+  //   return {
+  //     title: this.info.name,
+  //     meta: [
+  //       {
+  //         hid: 'description',
+  //         name: 'description',
+  //         content: this.info.description
+  //       }
+  //     ]
+  //   }
+  // }
 }
 </script>
 
-<style scoped>
-@import '../styles/custom-media.css';
-@import '../styles/custom-properties.css';
-
-.container {
-  padding: 1.5rem 0;
-  box-sizing: border-box;
-  min-height: calc(100% - 72px - 216px);
-}
-
-.header {
-  padding: 0 1.5rem;
-  text-align: center;
-}
-
-.title + p + .dates {
-  margin-bottom: 0;
-  font-weight: 600;
-}
-
-.title + p + .dates + .venue {
-  font-size: var(--font-small-size);
-  line-height: var(--font-small-line-height);
-  margin-bottom: 5rem;
-}
-
-figure {
-  margin: 0 0 3em;
-}
-
-figcaption {
-  font-size: var(--font-small-size);
-  line-height: var(--font-small-line-height);
-  padding: 0.25rem 1.5rem;
-}
-
-.mainImage {
-  width: 100%;
-  vertical-align: top;
-}
-
-.sessionListTitle {
-  text-align: center;
-  font-weight: 600;
-  font-size: var(--font-title2-size);
-  line-height: var(--font-title2-line-height);
-  margin: 0 0 3rem;
-
-  @media (--media-min-medium) {
-    font-size: var(--font-title1-size);
-    line-height: var(--font-title1-line-height);
-  }
-}
-
-.sessionListContainer {
-  max-width: var(--width-small);
-  margin: 0 auto;
-  padding: 0 1.5rem;
-  box-sizing: border-box;
-}
-</style>
+<style scoped></style>

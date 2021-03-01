@@ -27,18 +27,35 @@ export default {
     fit: {
       default: 'max',
       type: String
+    },
+    crop: {
+      default: '',
+      type: String
     }
   },
   computed: {
     altFromImage: function() {
       return this.image.alt
     },
+    // imageUrl: function() {
+    //   return builder
+    //     .image(this.image)
+    //     .size(this.width, this.height)
+    //     .auto(this.auto)
+    //     .fit(this.fit)
+    //   return builder
+    // }
     imageUrl: function() {
-      return builder
+      let img = builder
         .image(this.image)
         .size(this.width, this.height)
         .auto(this.auto)
-        .fit(this.fit)
+      if (this.fit == 'crop' && this.crop) {
+        img = img.fit(this.fit).crop(this.crop)
+      } else if (this.fit != 'crop') {
+        img.fit(this.fit)
+      }
+      return img
     }
   }
 }

@@ -3,13 +3,12 @@ import sanityClient from './sanityClient'
 
 const routesQuery = `
   {
-    "sessions": *[_type == "session"],
+    "conferenceSessions": *[_type == "conferenceSession"],
     "speakers": *[_type == "person" && defined(slug.current)]
   }
 `
 
 export default {
-  // mode: 'spa',
   target: 'static', // default is 'server'
 
   /*
@@ -28,7 +27,7 @@ export default {
   /*
    ** Customize the progress-bar color
    */
-  loading: { color: '#fff' },
+  loading: { color: '#ccc' },
 
   /*
    ** Global CSS
@@ -38,34 +37,54 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ['~/plugins/eventInformation'],
+  plugins: ['~/plugins/conference'],
 
   /*
    ** Nuxt.js modules
    */
-  modules: ['@nuxtjs/pwa'],
+  modules: ['@nuxtjs/pwa', 'bootstrap-vue/nuxt'],
+
+  // bootstrapVue: {
+  //   // Install the `IconsPlugin` plugin (in addition to `BootstrapVue` plugin)
+  //   icons: true
+  // },
 
   /*
    ** Set global info from sanity document
    */
-  eventInformation: () => {
-    return sanityClient.fetch('*[_id == "eventInformation"]').then(res => res)
+  // conference: () => {
+  //   return sanityClient.fetch('*[_id == "conference"]').then(res => res)
+  // },
+  conference: () => {
+    return sanityClient
+      .fetch(
+        `
+    {
+      "info": *[_id == "conference"] | order(conference.schedule.from) {
+        ..., image { ..., asset->}
+      }[0]
+    }
+  `
+      )
+      .then(res => res)
   },
 
   /*
    ** Generate dynamic routes from data from sanity.
    ** Used only for generating static served HTML files
    */
-  generate: {
-    routes: () => {
-      return sanityClient.fetch(routesQuery).then(res => {
-        return [
-          ...res.sessions.map(item => `/sessions/${item._id}`),
-          ...res.speakers.map(item => `/speakers/${item.slug.current}`)
-        ]
-      })
-    }
-  },
+  // generate: {
+  //   routes: () => {
+  //     return sanityClient.fetch(routesQuery).then(res => {
+  //       return [
+  //         ...res.conferenceSessions.map(
+  //           item => `/sessions/${item._id}`
+  //         ),
+  //         ...res.speakers.map(item => `/speakers/${item.slug.current}`)
+  //       ]
+  //     })
+  //   }
+  // },
 
   /*
    ** Build configuration
@@ -88,21 +107,21 @@ export default {
           }
         }
       }
-    },
+    }
 
     /*
      ** You can extend webpack config here
      */
-    extend(config, ctx) {
-      // Run ESLint on save
-      if (ctx.isDev && ctx.isClient) {
-        config.module.rules.push({
-          enforce: 'pre',
-          test: /\.(js|vue)$/,
-          loader: 'eslint-loader',
-          exclude: /(node_modules)/
-        })
-      }
-    }
+    // extend(config, ctx) {
+    //   // Run ESLint on save
+    //   if (ctx.isDev && ctx.isClient) {
+    //     config.module.rules.push({
+    //       enforce: 'pre',
+    //       test: /\.(js|vue)$/,
+    //       loader: 'eslint-loader',
+    //       exclude: /(node_modules)/
+    //     })
+    //   }
+    // }
   }
 }

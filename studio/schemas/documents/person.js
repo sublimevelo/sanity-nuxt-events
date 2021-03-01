@@ -24,6 +24,28 @@ export default {
       type: 'mainImage'
     },
     {
+      name: 'role',
+      type: 'string',
+      title: 'Role',
+      options: {
+        list: [
+          { value: 'internal', title: 'LEAD Employee' },
+          { value: 'presenter', title: 'Presenter' },
+          { value: 'reference', title: 'Reference' }
+        ]
+      }
+    },
+    {
+      name: 'title',
+      title: 'Title',
+      type: 'string'
+    },
+    {
+      name: 'institution',
+      title: 'Institution',
+      type: 'string'
+    },
+    {
       name: 'bio',
       type: 'bioPortableText',
       title: 'Biography'

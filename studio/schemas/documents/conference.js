@@ -1,13 +1,32 @@
 export default {
-  name: 'eventInformation',
+  name: 'conference',
   type: 'document',
-  title: 'Event Information',
-  __experimental_actions: ['update', /* 'create', 'delete', */ 'publish'],
+  title: 'Conference',
+  // __experimental_actions: ['update', 'create', 'delete', 'publish'],
   fields: [
     {
       name: 'name',
       type: 'string',
       title: 'Event name'
+    },
+    {
+      name: 'slug',
+      type: 'slug',
+      title: 'Slug',
+      options: {
+        source: 'name'
+      }
+    },
+    {
+      name: 'eventType',
+      type: 'string',
+      title: 'Event type',
+      options: {
+        list: [
+          {value: 'conference', title: 'conference'},
+          {value: 'series', title: 'Series'},
+        ]
+      }
     },
     {
       name: 'description',
@@ -22,9 +41,28 @@ export default {
     },
     {
       name: 'schedule',
-      type: 'schedule',
+      type: 'array',
       title: 'Schedule',
-      description: 'From when to when will the event last?'
+      of: [
+        {
+          name: 'schedule',
+          type: 'schedule',
+          title: 'Schedule'
+        }
+      ],
+      description: 'Enter start and end times for each day'
+    },
+    {
+      name: 'program',
+      type: 'array',
+      title: 'Program',
+      of: [
+        {
+          name: 'conferenceSession',
+          type: 'conferenceSession',
+          title: 'Session'
+        }
+      ]
     },
     {
       name: 'venue',

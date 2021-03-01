@@ -1,13 +1,13 @@
 export const state = () => ({
-  eventInformation: {
+  conference: {
     title: 'This is the test title'
   },
   program: {}
 })
 
 export const getters = {
-  eventInformation(state) {
-    return state.eventInformation
+  conference(state) {
+    return state.conference
   },
   getProgram(state) {
     return state.program
@@ -15,8 +15,8 @@ export const getters = {
 }
 
 export const mutations = {
-  setEventInformation(state, info) {
-    state.eventInformation = info
+  setconference(state, info) {
+    state.conference = info
   },
   setProgram(state, program) {
     state.program = program

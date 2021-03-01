@@ -1,6 +1,6 @@
 # Events with Nuxt.js
 
-_Data-driven conference website in Vue.js. Speakers, sessions, and scheduling._
+_Data-driven eventInformation website in Vue.js. Speakers, conferenceSessions, and scheduling._
 
 Deployed from [sanity.io/create](https://www.sanity.io/create/?template=sanity-io%2Fsanity-template-nuxt-events).
 

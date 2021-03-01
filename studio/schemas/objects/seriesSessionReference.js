@@ -1,22 +1,21 @@
 export default {
-  name: 'eventReference',
+  name: 'seriesSessionReference',
   type: 'object',
-  title: 'Event reference',
+  title: 'Session reference (series)',
   fields: [
     {
       type: 'reference',
-      name: 'event',
+      name: 'session',
       to: [
         {
-          type: 'conference'
+          type: 'seriesSession'
         }
       ]
     }
   ],
   preview: {
     select: {
-      title: 'event.name',
-      media: 'event.logo.asset'
+      title: 'session.title'
     }
   }
 }

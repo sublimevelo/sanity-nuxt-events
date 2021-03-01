@@ -1,15 +1,27 @@
 import { MdAvTimer as icon } from "react-icons/md";
 
 export default {
-  name: 'session',
+  name: 'conferenceSession',
   type: 'document',
-  title: 'Session',
+  title: 'Event Session',
   icon,
   fields: [
     {
       name: 'title',
       type: 'string',
       title: 'Title'
+    },
+    {
+      name: 'day',
+      type: 'number',
+      title: 'Day',
+      description: '1, 2, etc.'
+    },
+    {
+      name: 'duration',
+      type: 'number',
+      title: 'Duration',
+      description: 'Duration (in minutes)'
     },
     {
       name: 'image',
@@ -20,7 +32,7 @@ export default {
       name: 'persons',
       type: 'array',
       title: 'Persons',
-      description: 'Who is responsible for this session?',
+      description: 'Who is responsible for this conferenceSession?',
       of: [
         {
           name: 'person',
@@ -30,7 +42,7 @@ export default {
       ]
     },
     {
-      name: 'sessionType',
+      name: 'conferenceSessionType',
       type: 'string',
       title: 'Session type',
       options: {
@@ -38,8 +50,8 @@ export default {
           {value: 'keynote', title: 'Keynote'},
           {value: 'talk', title: 'Talk'},
           {value: 'break', title: 'Break'},
-          {value: 'firesideChat', title: 'Fireside Chat'},
-          {value: 'panel', title: 'Panel'}
+          {value: 'panel', title: 'Panel'},
+          {value: 'mini', title: 'Mini Session'},
         ]
       }
     },
@@ -58,15 +70,16 @@ export default {
   preview: {
     select: {
       title: 'title',
-      sessionType: 'sessionType',
+      conferenceSessionType: 'conferenceSessionType',
+      day: 'day',
       person: 'person.name',
       media: 'image'
     },
-    prepare ({title, media, sessionType, person}) {
+    prepare ({title, media, day, conferenceSessionType, person}) {
       return {
         title,
         media,
-        subtitle: `${sessionType} ${person ? `- ${person}` : ''}`
+        subtitle: `${conferenceSessionType} (d${day}) ${person ? `- ${person}` : ''}`
       }
     }
   }
