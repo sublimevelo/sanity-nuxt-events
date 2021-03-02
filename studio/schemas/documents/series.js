@@ -44,7 +44,7 @@ export default {
         'Publish one or more sessions and set a reference to them here. Sessions will automatically be ordered chronologically',
       of: [
         {
-          name: 'session',
+          // name: 'session',
           type: 'seriesSessionReference',
           title: 'Sessions'
         }
