@@ -69,6 +69,13 @@ export default {
       title: 'Description'
     }
   ],
+  orderings: [
+    {
+      title: 'Session Date, Desc',
+      name: 'sessioneDateDesc',
+      by: [{ field: 'schedule.from', direction: 'desc' }]
+    }
+  ],
   preview: {
     select: {
       title: 'title',
