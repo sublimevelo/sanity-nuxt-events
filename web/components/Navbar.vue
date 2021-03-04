@@ -3,16 +3,11 @@
     <b-navbar toggleable="lg" type="dark" variant="info">
       <b-container>
         <b-navbar-brand href="/">{{ title }}</b-navbar-brand>
-
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
         <b-collapse id="nav-collapse" is-nav>
           <b-navbar-nav>
-            <b-nav-item href="/sessions">Sessions</b-nav-item>
-            <b-nav-item href="/speakers">Speakers</b-nav-item>
-            <b-nav-item v-if="ticketLink" :href="ticketLink"
-              >Tickets</b-nav-item
-            >
+            <MinisNavItemsDropdown :menuItems="minisNavItems" />
           </b-navbar-nav>
 
           <!-- Right aligned nav items -->
@@ -48,7 +43,16 @@
 </template>
 
 <script>
+import MinisNavItemsDropdown from '~/components/nav/MinisNavItemsDropdown'
+import minisNavItems from '~/lib/minisNavItems'
+
 export default {
+  components: { MinisNavItemsDropdown },
+  data() {
+    return {
+      minisNavItems: minisNavItems
+    }
+  },
   props: {
     title: {
       type: String,
@@ -67,40 +71,4 @@ export default {
   padding-left: 15px;
   padding-right: 15px;
 }
-
-/* @import '../styles/custom-properties.css';
-
-.header {
-  padding: 1.5rem;
-  max-width: var(--width-medium);
-  box-sizing: border-box;
-  margin: 0 auto;
-}
-
-@media screen and (min-width: 520px) {
-  .header {
-    display: flex;
-    justify-content: space-between;
-  }
-}
-
-@media screen and (min-width: 520px) {
-  nav {
-    display: flex;
-    justify-content: flex-end;
-  }
-  nav a {
-    margin-left: 2rem;
-  }
-}
-
-.header a {
-  display: block;
-  color: inherit;
-  text-decoration: inherit;
-}
-
-.home {
-  font-weight: 600;
-} */
 </style>
