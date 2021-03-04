@@ -4,9 +4,7 @@
       :title="$store.state.conference.name"
       :ticket-link="$store.state.conference.ticket"
     />
-    <b-container>
-      <nuxt />
-    </b-container>
+    <nuxt />
     <Footer />
   </div>
 </template>

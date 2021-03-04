@@ -1,6 +1,7 @@
 <template>
-  <b-row>
-    <b-col sm="12">
+  <b-container>
+    <b-row>
+      <b-col sm="12">
       <!-- <section v-if="info._id"> -->
       <header class="header">
         <h1 class="title">{{ info.name }}</h1>
@@ -15,8 +16,9 @@
       <section v-else>
         <h2>No event data is available</h2>
       </section> -->
-    </b-col>
-  </b-row>
+      </b-col>
+    </b-row>
+  </b-container>
 </template>
 
 <script>
