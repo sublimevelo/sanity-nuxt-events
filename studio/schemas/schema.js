@@ -6,6 +6,8 @@ import schemaTypes from 'all:part:@sanity/base/schema-type'
 
 // document types
 // import events from './documents/event'
+import socialLink from './objects/socialLink'
+import socials from './objects/socials'
 import conference from './documents/conference'
 import series from './documents/series'
 import person from './documents/person'
@@ -46,6 +48,8 @@ export default createSchema({
 
     // When added to this list, object types can be used as
     // { type: 'typename' } in other document schemas
+    socialLink,
+    socials,
     schedule,
     // program,
     // scheduleItem,

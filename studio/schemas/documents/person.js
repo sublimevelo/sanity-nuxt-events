@@ -24,6 +24,11 @@ export default {
       type: 'mainImage'
     },
     {
+      name: 'socials',
+      title: 'Socials',
+      type: 'socials'
+    },
+    {
       name: 'role',
       title: 'Roles',
       type: 'array',
