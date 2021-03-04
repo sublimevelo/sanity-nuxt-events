@@ -1,37 +1,42 @@
 <template>
-  <div>
-    <b-link
-      :to="{ path: '/sessions/' + session.slug.current }"
-      class="stealth-link"
+  <b-card
+    :title="session.title"
+    :img-src="
+      urlFor(session.persons[0].person.image)
+      .width(400)
+        .height(250)
+        .url()
+    "
+    img-alt="session.persons[0].image.alt"
+  >
+    <b-card-text class="text-muted">
+        {{ sessionDT(session.schedule.from, session.schedule.duration) }}
+    </b-card-text>
+      <b-card-text>{{ session.summary }}</b-card-text>
+
+      <b-card-text>
+        <strong>Presented by</strong>
+        <br />
+        <span v-for="person in session.persons" :key="person._id">
+          {{ person.person.name }} </span
+        ><br />
+      </b-card-text>
+    </b-card-text>
+    <b-button
+      :to="{ path: '/minis/sessions/' + session.slug.current }"
+      variant="primary"
+      >More info</b-button
     >
-      <b-media vertical-align="top" class="mb-2 pb-2">
-        <template #aside>
-          <div v-for="person in session.persons" :key="person._id">
-            <SanityImage
-              :image="person.person.image"
-              :alt="person.person.image.alt"
-              :width="80"
-              :height="80"
-              fit="crop"
-              crop="focalpoint"
-            />
-          </div>
-        </template>
-        <h5 class="mt-0 mb-0">{{ session.title }}</h5>
-        <p class="mb-1">
-          {{ sessionDT(session.schedule.from, session.schedule.duration) }}
-        </p>
-        <p class="mb-0">{{ session.summary }}</p>
-      </b-media>
-    </b-link>
-  </div>
+    <template #footer>
+      <small class="text-muted"></small>
+    </template>
+  </b-card>
 </template>
 <script>
 import SanityImage from '~/components/SanityImage'
-import blocksToText from '~/lib/blocksToText'
-import { parseISO } from 'date-fns'
-import { format } from 'date-fns'
-import { add } from 'date-fns'
+import urlFor from '~/lib/imageBuilder'
+import sessionDT from '~/lib/sessionDT'
+
 import { dateFilter } from 'vue-date-fns'
 
 export default {
@@ -44,12 +49,8 @@ export default {
     }
   },
   methods: {
-    sessionDT: function(from, dur) {
-      return `${format(parseISO(from), 'MMMM dd, ha')} - ${format(
-        add(parseISO(from), { minutes: dur }),
-        'ha'
-      )}`
-    }
+    sessionDT: sessionDT,
+    urlFor: urlFor
   },
   filters: {
     dateFilter
@@ -60,9 +61,9 @@ export default {
 <style lang="scss" scoped>
 // @import '../styles/custom-properties.css';
 
-// .media {
-//   border-bottom: 1px solid #bbb;
-// }
+.media {
+  border-bottom: 1px solid #bbb;
+}
 
 a.stealth-link {
   &:link,
