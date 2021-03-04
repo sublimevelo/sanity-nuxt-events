@@ -1,12 +1,12 @@
 import pkg from './package'
 import sanityClient from './sanityClient'
 
-const routesQuery = `
-  {
-    "conferenceSessions": *[_type == "conferenceSession"],
-    "speakers": *[_type == "person" && defined(slug.current)]
-  }
-`
+// const routesQuery = `
+//   {
+//     "conferenceSessions": *[_type == "conferenceSession"],
+//     "speakers": *[_type == "person" && defined(slug.current)]
+//   }
+// `
 
 export default {
   target: 'static', // default is 'server'
@@ -32,7 +32,7 @@ export default {
   /*
    ** Global CSS
    */
-  css: [{ src: 'normalize.css' }],
+  css: [{ src: '~/styles/app.scss' }],
 
   /*
    ** Plugins to load before mounting the App
@@ -42,7 +42,12 @@ export default {
   /*
    ** Nuxt.js modules
    */
+  // modules: ['@nuxtjs/pwa'],
   modules: ['@nuxtjs/pwa', 'bootstrap-vue/nuxt'],
+  bootstrapVue: {
+    bootstrapCSS: false, // Or `css: false`
+    bootstrapVueCSS: false // Or `bvCSS: false`
+  },
 
   // bootstrapVue: {
   //   // Install the `IconsPlugin` plugin (in addition to `BootstrapVue` plugin)
