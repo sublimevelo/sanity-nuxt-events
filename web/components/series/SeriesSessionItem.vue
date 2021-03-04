@@ -3,24 +3,23 @@
     :title="session.title"
     :img-src="
       urlFor(session.persons[0].person.image)
-      .width(400)
+        .width(400)
         .height(250)
         .url()
     "
     img-alt="session.persons[0].image.alt"
   >
     <b-card-text class="text-muted">
-        {{ sessionDT(session.schedule.from, session.schedule.duration) }}
+      {{ sessionDT(session.schedule.from, session.schedule.duration) }}
     </b-card-text>
-      <b-card-text>{{ session.summary }}</b-card-text>
+    <b-card-text>{{ session.summary }}</b-card-text>
 
-      <b-card-text>
-        <strong>Presented by</strong>
-        <br />
-        <span v-for="person in session.persons" :key="person._id">
-          {{ person.person.name }} </span
-        ><br />
-      </b-card-text>
+    <b-card-text>
+      <strong>Presented by</strong>
+      <br />
+      <span v-for="person in session.persons" :key="person._id">
+        {{ person.person.name }} </span
+      ><br />
     </b-card-text>
     <b-button
       :to="{ path: '/minis/sessions/' + session.slug.current }"
