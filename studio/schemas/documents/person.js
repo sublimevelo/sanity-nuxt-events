@@ -25,8 +25,9 @@ export default {
     },
     {
       name: 'role',
-      type: 'string',
-      title: 'Role',
+      title: 'Roles',
+      type: 'array',
+      of: [{ type: 'string' }],
       options: {
         list: [
           { value: 'internal', title: 'LEAD Employee' },
