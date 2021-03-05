@@ -16,9 +16,8 @@ export default {
     SeriesSessionItem
   },
   props: {
-    sessions: {
+    sessions: Array,
     showArchived: Boolean
-    }
   }
 }
 </script>
