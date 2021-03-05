@@ -1,6 +1,6 @@
 <template>
   <footer class="footer">
-    <nav>
+    <!-- <nav>
       <nuxt-link to="/">Home</nuxt-link>
       <nuxt-link to="/conferenceSessions">Sessions</nuxt-link>
       <nuxt-link to="/speakers">Speakers</nuxt-link>
@@ -8,12 +8,10 @@
       <a v-if="conference.venue" :href="conference.ticket"
         >Tickets
       </a>
-    </nav>
+    </nav> -->
     <address v-if="conference.venue" class="venue">
       <div>{{ conference.venue.name }}</div>
-      <div>
-        {{ conference.venue.postCode }} {{ conference.venue.city }}
-      </div>
+      <div>{{ conference.venue.postCode }} {{ conference.venue.city }}</div>
       <div>{{ conference.venue.country }}</div>
     </address>
     <div class="power">
