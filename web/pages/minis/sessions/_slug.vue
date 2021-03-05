@@ -4,7 +4,11 @@
       <b-col sm="12">
         <section>
           <h1 class="title">{{ session.title }}</h1>
-          <BlockContent :blocks="session.description" />
+          <BlockContent
+            v-if="session.description"
+            :blocks="session.description"
+          />
+          <div v-else>No description provided</div>
           <!-- {{ session }} -->
           <!-- <div class="bio" :v-if="bio.length > 0">
             <BlockContent v-if="bio" :blocks="bio" />
