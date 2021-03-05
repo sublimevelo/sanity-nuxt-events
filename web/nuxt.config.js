@@ -49,10 +49,10 @@ export default {
     bootstrapVueCSS: false // Or `bvCSS: false`
   },
 
-  // bootstrapVue: {
-  //   // Install the `IconsPlugin` plugin (in addition to `BootstrapVue` plugin)
-  //   icons: true
-  // },
+  bootstrapVue: {
+    // Install the `IconsPlugin` plugin (in addition to `BootstrapVue` plugin)
+    icons: true
+  },
 
   /*
    ** Set global info from sanity document
