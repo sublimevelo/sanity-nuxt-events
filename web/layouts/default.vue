@@ -1,5 +1,6 @@
 <template>
   <div>
+    <b-alert v-if="debug" variant="danger" show>Debug mode ON</b-alert>
     <Navbar
       :title="$store.state.conference.name"
       :ticket-link="$store.state.conference.ticket"
@@ -17,6 +18,11 @@ export default {
   components: {
     Navbar,
     Footer
+  },
+  data() {
+    return {
+      debug: this.$debug()
+    }
   }
 }
 </script>
