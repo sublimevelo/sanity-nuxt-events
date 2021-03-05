@@ -24,17 +24,13 @@
 import sanityClient from '~/sanityClient'
 import BlockContent from 'sanity-blocks-vue-component'
 import SocialLinks from '~/components/blockContent/SocialLinks'
-// import SeriesSessionList from '~/components/series/SeriesSessionList'
-// import SeriesArchiveList from '~/components/series/SeriesArchiveList'
-// import MoreInfoForm from '~/components/forms/MoreInfoForm'
 
-import { filter, sortBy, partition } from 'lodash'
-import add from 'date-fns/add'
+import { filter } from 'lodash'
 
 // groq can't deep filter on arrays, so we'll need to filter out dates in script :(
 const query = `
 {
-    'people': *[_type == "person"]{
+    'people': *[_type == "person"] | order(last) {
     ...,
     image {
         alt,
