@@ -12,7 +12,7 @@
         id="input-bot-field"
         v-model="form.bot"
         type="hidden"
-        placeholder="Bots only"
+        placeholder="Don’t fill this out if you’re human"
       />
 
       <b-form-group
