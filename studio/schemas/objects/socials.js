@@ -4,7 +4,6 @@ export default {
   type: 'array',
   of: [
     {
-      name: 'social',
       type: 'socialLink',
       title: 'Social Link'
     }
