@@ -1,6 +1,6 @@
 <template>
   <header class="header">
-    <b-navbar toggleable="lg" type="dark" variant="info">
+    <b-navbar toggleable="lg" type="dark" variant="primary" class="mb-3">
       <b-container>
         <b-navbar-brand href="/">{{ title }}</b-navbar-brand>
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
@@ -30,10 +30,10 @@
             <b-nav-item-dropdown right>
               <!-- Using 'button-content' slot -->
               <template #button-content>
-                <em>User Tools</em>
+                <em>Client Tools</em>
               </template>
-              <b-dropdown-item href="#">Profile</b-dropdown-item>
               <b-dropdown-item href="#">Login</b-dropdown-item>
+              <b-dropdown-item href="#">Profile</b-dropdown-item>
             </b-nav-item-dropdown>
           </b-navbar-nav>
         </b-collapse>
