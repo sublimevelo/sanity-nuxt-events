@@ -1,9 +1,10 @@
 <template>
   <b-card-group deck>
     <SeriesSessionItem
-      v-for="session in sessions['upcoming']"
+      v-for="session in sessions"
       :key="session._id"
       :session="session.session"
+      :showArchived="showArchived"
     />
   </b-card-group>
 </template>
@@ -16,7 +17,7 @@ export default {
   },
   props: {
     sessions: {
-      type: Object
+    showArchived: Boolean
     }
   }
 }
