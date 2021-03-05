@@ -64,9 +64,15 @@ export default {
   ],
   preview: {
     select: {
-      title: 'name',
-      subtitle: 'slug.current',
-      media: 'image'
+      first: 'first',
+      last: 'last',
+      image: 'image'
+    },
+    prepare({ first, last, image }) {
+      return {
+        title: `${first} ${last}`,
+        media: image
+      }
     }
   }
 }
