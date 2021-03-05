@@ -45,35 +45,10 @@
       <b-button type="submit" variant="primary">Submit</b-button>
     </b-form>
 
-    <h5>Form data</h5>
+    <!-- <h5>Form data</h5>
     <p>{{ form.email }}</p>
-    <p>{{ form.name }}</p>
+    <p>{{ form.name }}</p> -->
   </div>
-
-  <!-- <form
-    name="ask-question"
-    method="post"
-    data-netlify="true"
-    data-netlify-honeypot="bot-field"
-  >
-    <input type="hidden" name="form-name" value="ask-question" />
-    <label v-for="(panelist, index) in panelists" :key="index">
-      <input
-        type="radio"
-        name="panelist"
-        :value="panelist"
-        @input="ev => updatePanelist"
-        :checked="panelist === currentPanelist"
-      />
-      <span>{{ panelist }}</span>
-    </label>
-    <p class="hidden">
-      <label
-        >Don’t fill this out if you’re human: <input name="bot-field"
-      /></label>
-    </p>
-    <button>Submit</button>
-  </form> -->
 </template>
 <script>
 export default {

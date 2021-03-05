@@ -60,17 +60,24 @@ export default {
 <style lang="scss" scoped>
 // @import '../styles/custom-properties.css';
 
-.media {
-  border-bottom: 1px solid #bbb;
-}
-
-a.stealth-link {
-  &:link,
-  &:hover,
-  &:visited,
-  &:active {
-    color: #000;
-    text-decoration: none;
+.archived {
+  background: #ddd;
+  .dt {
+    color: rgb(100, 8, 8) !important;
   }
 }
+
+// .media {
+//   border-bottom: 1px solid #bbb;
+// }
+
+// a.stealth-link {
+//   &:link,
+//   &:hover,
+//   &:visited,
+//   &:active {
+//     color: #000;
+//     text-decoration: none;
+//   }
+// }
 </style>

@@ -26,10 +26,7 @@
 <script>
 import groq from 'groq'
 import sanityClient from '~/sanityClient'
-// import SanityImage from '~/components/SanityImage'
-// import SessionItem from '~/components/SessionItem'
 import BlockContent from 'sanity-blocks-vue-component'
-// import blocksToText from '~/lib/blocksToText'
 
 const query = groq`
 {
@@ -50,9 +47,7 @@ const query = groq`
 
 export default {
   components: {
-    // SanityImage,
     BlockContent
-    // SessionItem
   },
   data() {
     return {
