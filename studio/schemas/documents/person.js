@@ -4,8 +4,13 @@ export default {
   title: 'Person',
   fields: [
     {
-      name: 'name',
-      title: 'Name',
+      name: 'first',
+      title: 'First Name',
+      type: 'string'
+    },
+    {
+      name: 'last',
+      title: 'Last Name',
       type: 'string'
     },
     {
@@ -14,7 +19,7 @@ export default {
       type: 'slug',
       description: 'Some frontends will require a slug to be set to be able to show the person',
       options: {
-        source: 'name',
+        source: doc => `${doc.first}-${doc.last}`,
         maxLength: 96
       }
     },
