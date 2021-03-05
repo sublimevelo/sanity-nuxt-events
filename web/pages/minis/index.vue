@@ -33,6 +33,9 @@
         <h2 class="title">
           {{ info.name }} {{ showArchived ? 'All' : 'Upcoming' }} Sessions
         </h2>
+        <b-alert v-if="!numActiveSessions" variant="info" show
+          >No upcoming sesssions. Showing archived sessions.</b-alert
+        >
         <b-button
           @click="showArchived = !showArchived"
           variant="primary"
@@ -103,18 +106,32 @@ export default {
   },
   data() {
     return {
-      showArchived: false
+      showArchived: false,
+      numActiveSessions: 0
+    }
+  },
+  mounted() {
+    if (!this.numActiveSessions) {
+      this.showArchived = true
     }
   },
   async asyncData() {
     let data = await sanityClient.fetch(queryCurrentSeries)
 
-    const mapped = data.info.program.map(function(session) {
+    let mapped = data.info.program.map(function(session) {
       session.session.archived =
         add(new Date(session.session.schedule.from), { days: 3 }) < new Date()
       return session
     })
+
+    mapped = sortBy(mapped, ['session.schedule.from'])
     data.info.program = mapped
+
+    data.numActiveSessions = filter(mapped, function(o) {
+      return !o.session.archived
+    }).length
+
+    // console.log(data.numActiveSessions)
 
     return data
   }
