@@ -80,7 +80,6 @@ export default {
     select: {
       title: 'title',
       start: 'schedule.from',
-      // p: 'persons',
       media: 'image'
     },
     prepare({ title, start, media }) {
