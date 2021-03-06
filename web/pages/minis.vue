@@ -4,10 +4,10 @@
       <b-row>
         <b-col sm="12">
           <div>
-            <b-nav pills small>
+            <b-nav tabs>
               <b-nav-item
                 v-for="item in minisNavItems"
-                :active="$route.path == item.url"
+                :active="onCurrentPath(item.url)"
                 :key="item.url"
                 :href="item.url"
               >
@@ -23,10 +23,18 @@
 </template>
 <script>
 import minisNavItems from '~/lib/minisNavItems'
+import { pull, isEqual } from 'lodash'
 export default {
   data() {
     return {
       minisNavItems: minisNavItems
+    }
+  },
+  methods: {
+    onCurrentPath(thisURL) {
+      thisURL = pull(thisURL.split('/'), '')
+      const root = pull(this.$route.path.split('/'), '')
+      return isEqual(thisURL, root)
     }
   }
 }
