@@ -80,20 +80,21 @@ const queryCurrentSeries = `
 {
   "info": *[_type == "series" && slug.current == "connections-minis"][0] {
 		...,
-        _id,
+    _id,
+    image { ..., asset->},
+      organizers[]->,
+      program[] {
+      session-> {
+        ...,
         image { ..., asset->},
-            organizers[]->,
-            program[] {
-            session-> {
-                ...,
-                persons[] {
-                ...,
-                  person-> {
-                    ...,
-                  }
-                }
-            }
+        persons[] {
+          ...,
+          person-> {
+            ...,
+          }
         }
+      }
+    }
 	}
 }
 `
