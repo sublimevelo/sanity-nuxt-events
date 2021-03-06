@@ -8,7 +8,7 @@
       </b-col>
     </b-row>
     <b-row>
-      <b-col sm="6">
+      <b-col sm="7">
         <h2>About {{ info.name }}</h2>
         <div v-if="$debug">
           <p></p>
@@ -23,7 +23,7 @@
         </div>
         <BlockContent :blocks="info.description" />
       </b-col>
-      <b-col sm="6">
+      <b-col sm="5">
         <h2>Request More Information</h2>
         <MoreInfoForm />
       </b-col>
