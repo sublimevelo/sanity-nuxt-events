@@ -1,11 +1,16 @@
 <template>
   <b-card
     v-if="!session.archived || (session.archived && showArchived)"
+    class="mb-3"
     :class="{ archived: session.archived }"
-    :title="session.title"
     :img-src="sessionImage(session)"
     img-alt="session.persons[0].image.alt"
   >
+    <template #header>
+      <h4 class="mb-0">
+        {{ session.title }}
+      </h4></template
+    >
     <b-card-text v-if="session.archived" class="dt text-muted">
       {{
         sessionDT(session.schedule.from, session.schedule.duration, true, false)
@@ -19,8 +24,9 @@
     <b-card-text>
       <strong>Presented by</strong>
       <br />
-      <span v-for="person in session.persons" :key="person._id">
-        {{ person.person.first }} {{ person.person.last }}</span
+      <span v-for="(person, idx) in session.persons" :key="person._id">
+        {{ person.person.first }} {{ person.person.last
+        }}<span v-if="!idx == session.persons.length - 1">, </span> </span
       ><br />
     </b-card-text>
     <template #footer>
@@ -29,7 +35,6 @@
         variant="primary"
         >More info</b-button
       >
-      <small class="text-muted"></small>
     </template>
   </b-card>
 </template>
@@ -48,7 +53,11 @@ export default {
     sessionDT: sessionDT,
     urlFor: urlFor,
     sessionImage: function(session) {
-      let image = urlFor(session.persons[0].person.image)
+      let image = session.image || session.persons[0].person.image
+      if (!image) {
+        return
+      }
+      image = urlFor(image)
         .width(400)
         .height(250)
       if (session.archived) {
@@ -65,7 +74,7 @@ export default {
 
 <style lang="scss" scoped>
 .archived {
-  background: #ddd;
+  background: rgba(0, 0, 0, 0.1);
   .dt {
     color: rgb(100, 8, 8) !important;
   }
