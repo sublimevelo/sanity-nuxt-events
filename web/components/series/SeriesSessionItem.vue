@@ -64,8 +64,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-// @import '../styles/custom-properties.css';
-
 .archived {
   background: #ddd;
   .dt {
@@ -73,17 +71,7 @@ export default {
   }
 }
 
-// .media {
-//   border-bottom: 1px solid #bbb;
-// }
-
-// a.stealth-link {
-//   &:link,
-//   &:hover,
-//   &:visited,
-//   &:active {
-//     color: #000;
-//     text-decoration: none;
-//   }
-// }
+.card {
+  min-width: 18rem;
+}
 </style>

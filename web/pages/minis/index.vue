@@ -132,8 +132,6 @@ export default {
       return !o.session.archived
     }).length
 
-    // console.log(data.numActiveSessions)
-
     return data
   }
   // head() {
