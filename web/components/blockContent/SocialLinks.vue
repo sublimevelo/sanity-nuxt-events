@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <span>
     <span v-for="social in socials" :key="social._id">
       <b-link :href="social.url">
         <b-icon
@@ -9,7 +9,7 @@
         ></b-icon
       ></b-link>
     </span>
-  </div>
+  </span>
 </template>
 
 <script>
