@@ -16,8 +16,8 @@ export default function sessionDT(
   }
 
   if (showTime) {
-    df = `${df}, ha`
-    endTime = ` - ${format(add(parseISO(from), { minutes: dur }), 'ha')}`
+    df = `${df}, h:mma`
+    endTime = ` - ${format(add(parseISO(from), { minutes: dur }), 'h:mma')}`
   }
 
   return `${format(parseISO(from), df)}${endTime}`
