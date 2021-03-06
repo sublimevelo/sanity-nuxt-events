@@ -1,31 +1,55 @@
 <template>
-  <span>
-    <nuxt-link v-if="currentSlug" :to="{ path: `/speakers/${currentSlug}` }">
-      <b>{{ personName }} </b>
-    </nuxt-link>
-    <b v-if="!currentSlug">{{ personName }} </b>
-  </span>
+  <div>
+    <b-card
+      class="mb-3"
+      :img-src="processImage(person.person.image)"
+      img-alt="person.person.image.alt"
+    >
+      <template #header>
+        <h4 class="mb-0">
+          {{ $personName(person.person) }}
+        </h4>
+      </template>
+      <b-card-text>
+        {{ person.person.title }}, {{ person.person.institution }}
+      </b-card-text>
+      <b-card-text>
+        <SocialLinks :socials="person.person.socials" />
+      </b-card-text>
+      <template #footer>
+        <b-button
+          :to="{
+            path: '/minis/speakers/#' + person.person.slug.current
+          }"
+          variant="primary"
+          >My Bio</b-button
+        >
+      </template>
+    </b-card>
+  </div>
 </template>
 
 <script>
+import SocialLinks from '~/components/blockContent/SocialLinks'
+
 export default {
   props: {
     person: {
-      type: Object,
-      default: () => {
-        return { name: 'Unknown' }
-      }
+      type: Object
     }
   },
-  computed: {
-    personName: props => {
-      return props.person.name
-    },
-    currentSlug: ({ person }) => {
-      const { slug } = person
-      if (slug && slug.current) {
-        return slug.current
+  components: {
+    SocialLinks
+  },
+  methods: {
+    processImage: function(image) {
+      if (!image) {
+        return
       }
+      image = this.$urlFor(image)
+        .width(400)
+        .height(250)
+      return image.url()
     }
   }
 }
