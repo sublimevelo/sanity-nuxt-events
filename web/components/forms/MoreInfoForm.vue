@@ -18,7 +18,6 @@
 
       <b-form-group
         id="input-group-email"
-        name="input-group-email"
         label="Email address:"
         label-for="input-email"
         description="We'll never share your email with anyone else."
@@ -34,13 +33,12 @@
       </b-form-group>
       <b-form-group
         id="input-group-name"
-        name="input-group-name"
         label="Your name:"
         label-for="input-name"
       >
         <b-form-input
-          id="input-email"
-          name="input-email"
+          id="input-name"
+          name="input-name"
           v-model="form.name"
           type="text"
           placeholder="Enter name"
