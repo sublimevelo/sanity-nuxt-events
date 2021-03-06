@@ -31,12 +31,16 @@
     <b-row>
       <b-col sm="12">
         <h2 class="title">
-          {{ info.name }} {{ showArchived ? 'All' : 'Upcoming' }} Sessions
+          {{ info.name }},
+          <small class="text-muted"
+            >{{ showArchived ? 'All' : 'Upcoming' }} Sessions</small
+          >
         </h2>
         <b-alert v-if="!numActiveSessions" variant="info" show
           >No upcoming sesssions. Showing archived sessions.</b-alert
         >
         <b-button
+          v-if="numActiveSessions"
           @click="showArchived = !showArchived"
           variant="primary"
           class="mb-3"
