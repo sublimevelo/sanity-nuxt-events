@@ -15,8 +15,15 @@ export default {
   ],
   preview: {
     select: {
-      title: 'person.name',
-      media: 'person.image.asset'
+      first: 'person.first',
+      last: 'person.last',
+      image: 'person.image'
+    },
+    prepare({ first, last, image }) {
+      return {
+        title: `${first} ${last}`,
+        media: image
+      }
     }
   }
 }
