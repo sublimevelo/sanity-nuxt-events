@@ -25,7 +25,7 @@
       <strong>Presented by</strong>
       <br />
       <span v-for="(person, idx) in session.persons" :key="person._id">
-        {{ person.person.first }} {{ person.person.last
+        {{ $personName(person.person)
         }}<span v-if="!idx == session.persons.length - 1">, </span> </span
       ><br />
     </b-card-text>
@@ -39,7 +39,6 @@
   </b-card>
 </template>
 <script>
-import urlFor from '~/lib/imageBuilder'
 import sessionDT from '~/lib/sessionDT'
 
 import { dateFilter } from 'vue-date-fns'
@@ -51,13 +50,12 @@ export default {
   },
   methods: {
     sessionDT: sessionDT,
-    urlFor: urlFor,
     sessionImage: function(session) {
       let image = session.image || session.persons[0].person.image
       if (!image) {
         return
       }
-      image = urlFor(image)
+      image = this.$urlFor(image)
         .width(400)
         .height(250)
       if (session.archived) {
