@@ -37,7 +37,12 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ['~/plugins/debug'],
+  plugins: [
+    '~/plugins/debug',
+    '~/plugins/imageBuilder',
+    '~/plugins/siteVars',
+    '~/plugins/personName'
+  ],
 
   /*
    ** Nuxt.js modules
