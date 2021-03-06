@@ -61,19 +61,6 @@ export default {
       //   plainTextBio: blocksToText(this.bio)
     }
   },
-  //   computed: {
-  //     scheduleItems: data => {
-  //       return data.program.schedule.filter(item => {
-  //         return (
-  //           item.conferenceSession &&
-  //           item.conferenceSession.persons &&
-  //           item.conferenceSession.persons.filter(
-  //             person => person.person._id === data.id
-  //           ).length > 0
-  //         )
-  //       })
-  //     }
-  //   },
   async asyncData({ params }) {
     return await sanityClient.fetch(query, params)
   }
