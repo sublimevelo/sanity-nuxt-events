@@ -5,16 +5,17 @@
         <div v-for="person in people" :key="person._id">
           <h2>{{ person.first }} {{ person.last }}</h2>
           <p>{{ person.title }}, {{ person.institution }}</p>
-          <BlockContent :blocks="person.bio" />
-          <h3>Socials</h3>
-          <SocialLinks :socials="person.socials" />
-          <h3>Sessions</h3>
-          <ul>
-            <li v-for="session in person.sessions" :key="session._id">
-              {{ session.title }}
-            </li>
-          </ul>
-        </div>
+            <BlockContent :blocks="person.bio" />
+          </b-col>
+          <b-col sm="5">
+            <h3>Sessions</h3>
+            <ul>
+              <li v-for="session in person.sessions" :key="session._id">
+                {{ session.title }}
+              </li>
+            </ul>
+          </b-col>
+        </b-row>
       </b-col>
     </b-row>
   </b-container>
