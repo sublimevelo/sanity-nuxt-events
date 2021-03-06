@@ -1,10 +1,14 @@
 <template>
   <b-container>
-    <b-row>
+    <b-row v-for="person in people" :key="person._id" :id="person.slug.current">
       <b-col sm="12">
-        <div v-for="person in people" :key="person._id">
-          <h2>{{ person.first }} {{ person.last }}</h2>
-          <p>{{ person.title }}, {{ person.institution }}</p>
+        <h2>{{ $personName(person) }}</h2>
+        <p>{{ person.title }}, {{ person.institution }}</p>
+        <p>
+          <SocialLinks :socials="person.socials" />
+        </p>
+        <b-row>
+          <b-col sm="7">
             <BlockContent :blocks="person.bio" />
           </b-col>
           <b-col sm="5">
