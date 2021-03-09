@@ -5,6 +5,7 @@ import createSchema from 'part:@sanity/base/schema-creator'
 import schemaTypes from 'all:part:@sanity/base/schema-type'
 
 // document types
+import siteSettings from './documents/siteSettings'
 import service from './documents/service'
 import serviceCategory from './documents/serviceCategory'
 import person from './documents/person'
@@ -35,6 +36,7 @@ export default createSchema({
   types: schemaTypes.concat([
     // The following are document types which will appear
     // in the studio.
+    siteSettings,
     service,
     serviceCategory,
     person,

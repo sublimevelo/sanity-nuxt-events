@@ -40,7 +40,7 @@ export default {
   plugins: [
     '~/plugins/debug',
     '~/plugins/imageBuilder',
-    '~/plugins/siteVars',
+    '~/plugins/siteSettings',
     '~/plugins/personName'
   ],
 
