@@ -21,15 +21,25 @@ export default {
       }
     },
     {
-      name: 'blurb',
+      name: 'summary',
       type: 'text',
-      title: 'Blurb',
-      description: 'Describe your event for search engines and social media.'
+      title: 'Short summary',
+      description: 'Describe your event for previews, search engines and social media.'
     },
     {
       name: 'description',
       type: 'bodyPortableText',
       title: 'Description'
+    },
+    {
+      name: 'keywords',
+      type: 'array',
+      title: 'Keywords',
+      description: 'Add keywords that describe the series.',
+      of: [{type: 'string'}],
+      options: {
+        layout: 'tags'
+      }
     },
     {
       name: 'image',
@@ -49,21 +59,6 @@ export default {
           title: 'Sessions'
         }
       ]
-    },
-    // {
-    //   name: 'ticket',
-    //   type: 'url',
-    //   title: 'Ticket link'
-    // },
-    {
-      name: 'keywords',
-      type: 'array',
-      title: 'Keywords',
-      description: 'Add keywords that describes your event.',
-      of: [{ type: 'string' }],
-      options: {
-        layout: 'tags'
-      }
     },
     {
       name: 'organizers',

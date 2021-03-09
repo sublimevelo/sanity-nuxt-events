@@ -61,13 +61,23 @@ export default {
       name: 'summary',
       type: 'text',
       title: 'Short summary',
-      description: 'For previews, social media etc.'
+      description: 'Describe your event for previews, search engines and social media.'
     },
     {
       name: 'description',
       type: 'bodyPortableText',
       title: 'Description'
-    }
+    },
+    {
+      name: 'keywords',
+      type: 'array',
+      title: 'Keywords',
+      description: 'Add keywords that describe the series.',
+      of: [{type: 'string'}],
+      options: {
+        layout: 'tags'
+      }
+    },
   ],
   orderings: [
     {
