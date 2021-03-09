@@ -167,22 +167,27 @@ export default {
     }).length
 
     return data
+  },
+  head() {
+    // if (!this.haveInfo) {
+    //   return
+    // }
+    return {
+      title: this.info.name,
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.info.summary
+        },
+        {
+          hid: 'keywords',
+          name: 'keywords',
+          content: this.info.keywords.join(',')
+        }
+      ]
+    }
   }
-  // head() {
-  //   if (!this.haveInfo) {
-  //     return
-  //   }
-  //   return {
-  //     title: this.info.name,
-  //     meta: [
-  //       {
-  //         hid: 'description',
-  //         name: 'description',
-  //         content: this.info.description
-  //       }
-  //     ]
-  //   }
-  // }
 }
 </script>
 
