@@ -1,4 +1,6 @@
 import S from '@sanity/desk-tool/structure-builder'
+import { MdBuild } from 'react-icons/md'
+import { MdList } from 'react-icons/md'
 import { MdPerson } from 'react-icons/md'
 import { MdEvent } from 'react-icons/md'
 import { MdGavel } from 'react-icons/md'
@@ -9,6 +11,8 @@ const hiddenDocTypes = listItem =>
   ![
     'conference',
     'conferenceSession',
+    'service',
+    'serviceCategory',
     'series',
     'seriesSession',
     'person',
@@ -33,11 +37,21 @@ export default () =>
       //   .schemaType('conferenceSession')
       //   .child(S.documentTypeList('conferenceSession').title('Sessions')),
       S.listItem()
+        .title('Services')
+        .icon(MdBuild)
+        .schemaType('service')
+        .child(S.documentTypeList('service').title('Services')),
+      S.listItem()
+        .title('Service Categories')
+        .icon(MdList)
+        .schemaType('serviceCategory')
+        .child(S.documentTypeList('serviceCategory').title('Service Categories')),
+      S.listItem()
         .title('Series')
         .icon(MdInfo)
         .child(S.documentTypeList('series').title('Series')),
       S.listItem()
-        .title('Series Session')
+        .title('Series Sessions')
         .icon(MdEvent)
         .child(S.documentTypeList('seriesSession').title('Series Sessions')),
       //   S.editor()
