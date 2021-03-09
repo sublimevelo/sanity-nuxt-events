@@ -61,7 +61,7 @@
           title="Updating session list"
           auto-hide-delay="3000"
         >
-          {{ !showArchived ? 'Hiding' : 'Showing' }} archived sessions
+          Done. {{ !showArchived ? 'Hiding' : 'Showing' }} archived sessions
         </b-toast>
         <SeriesSessionList
           :sessions="info.program"
@@ -137,12 +137,6 @@ export default {
     toggleArchivedSessions() {
       this.showArchived = !this.showArchived
       this.$bvToast.show('session-toast')
-      // this.$bvToast.toast(`Showing archived sessions`, {
-      //   title: `Updating session list`,
-      //   toaster: toaster,
-      //   solid: true
-      //   // 'auto-hide-delay': 1000
-      // })
     }
   },
   mounted() {
