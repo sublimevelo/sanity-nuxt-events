@@ -68,11 +68,14 @@ export default {
     select: {
       first: 'first',
       last: 'last',
-      image: 'image'
+      image: 'image',
+      title: 'title',
+      inst: 'institution'
     },
-    prepare({ first, last, image }) {
+    prepare({ first, last, image, title, inst }) {
       return {
         title: `${first} ${last}`,
+        subtitle: `${title}, ${inst}`,
         media: image
       }
     }
