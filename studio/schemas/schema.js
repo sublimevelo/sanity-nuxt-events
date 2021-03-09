@@ -35,27 +35,29 @@ export default createSchema({
   types: schemaTypes.concat([
     // The following are document types which will appear
     // in the studio.
-    codeOfConduct,
-    // events,
-    conference,
-    series,
+    service,
+    serviceCategory,
     person,
-    venue,
-    conferenceSession,
+    series,
     seriesSession,
+    // conferenceSession,
+    // codeOfConduct,
+    // events,
+    // conference,
 
     // When added to this list, object types can be used as
     // { type: 'typename' } in other document schemas
-    socialLink,
+    mainImage,
     socials,
+    // socialLink,
+    bioPortableText,
+    personReference,
+    venue,
     schedule,
+    bodyPortableText,
+    seriesSessionReference
+    // eventReference,
     // program,
     // scheduleItem,
-    mainImage,
-    bioPortableText,
-    bodyPortableText,
-    eventReference,
-    personReference,
-    seriesSessionReference
   ])
 })
