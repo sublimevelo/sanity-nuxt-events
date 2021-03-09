@@ -5,25 +5,26 @@ import createSchema from 'part:@sanity/base/schema-creator'
 import schemaTypes from 'all:part:@sanity/base/schema-type'
 
 // document types
-// import events from './documents/event'
-import socialLink from './objects/socialLink'
-import socials from './objects/socials'
-import conference from './documents/conference'
-import series from './documents/series'
+import service from './documents/service'
+import serviceCategory from './documents/serviceCategory'
 import person from './documents/person'
-import codeOfConduct from './documents/codeOfConduct'
-import conferenceSession from './documents/conferenceSession'
+import series from './documents/series'
 import seriesSession from './documents/seriesSession'
+// import events from './documents/event'
+// import codeOfConduct from './documents/codeOfConduct'
+// import conferenceSession from './documents/conferenceSession'
 
 // Object types
 import mainImage from './objects/mainImage'
+import socials from './objects/socials'
+// import socialLink from './objects/socialLink'
+import bioPortableText from './objects/bioPortableText'
+import personReference from './objects/personReference'
 import venue from './objects/venue'
 import schedule from './objects/schedule'
-import bioPortableText from './objects/bioPortableText'
 import bodyPortableText from './objects/bodyPortableText'
-import eventReference from './objects/eventReference'
-import personReference from './objects/personReference'
 import seriesSessionReference from './objects/seriesSessionReference'
+// import eventReference from './objects/eventReference'
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({

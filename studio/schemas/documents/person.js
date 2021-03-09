@@ -31,12 +31,14 @@ export default {
     {
       name: 'socials',
       title: 'Socials',
-      type: 'socials'
+      type: 'array',
+      of: [{ type: 'socials' }],
     },
     {
       name: 'role',
       title: 'Roles',
       type: 'array',
+      description: 'Only "LEAD" is currently being used',
       of: [{ type: 'string' }],
       options: {
         list: [
