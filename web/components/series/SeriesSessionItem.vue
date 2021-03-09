@@ -27,10 +27,15 @@
     <div v-if="session.persons.length">
       <h4 class="h5">Presented by</h4>
       <b-list-group flush>
-        <b-list-group-item v-for="person in session.persons" :key="person._id"
+        <b-list-group-item
+          v-for="person in getPresenters(session)[0]"
+          :key="person._id"
           >{{ $personName(person.person) }}<br /><small
             >{{ person.person.title }}, {{ person.person.institution }}
           </small>
+        </b-list-group-item>
+        <b-list-group-item v-if="getPresenters(session)[1].length">
+          ...
         </b-list-group-item>
       </b-list-group>
     </div>
@@ -81,6 +86,12 @@ export default {
         image = image.saturation(-100)
       }
       return image.url()
+    },
+    getPresenters(session) {
+      if (!session.persons) {
+        return ''
+      }
+      return [session.persons.slice(0, 2), session.persons.slice(2)]
     }
   },
   filters: {
