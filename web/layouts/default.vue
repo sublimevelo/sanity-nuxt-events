@@ -1,10 +1,9 @@
 <template>
   <div>
-    <b-alert v-if="debug" variant="danger" show>Debug mode ON</b-alert>
-    <Navbar
-      :title="$store.state.conference.name"
-      :ticket-link="$store.state.conference.ticket"
-    />
+    <b-alert v-if="siteSettings.debug" variant="danger" show
+      >Debug mode ON</b-alert
+    >
+    <Navbar :title="siteSettings.siteName" />
     <nuxt />
     <Footer />
   </div>
@@ -19,9 +18,13 @@ export default {
     Navbar,
     Footer
   },
-  data() {
+  data: data => {
+    if (!data.$store.state) {
+      return
+    }
     return {
-      debug: this.$debug()
+      year: new Date().getFullYear(),
+      siteSettings: data.$store.state.siteSettings
     }
   }
 }

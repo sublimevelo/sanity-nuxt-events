@@ -1,22 +1,9 @@
 <template>
   <footer class="footer">
-    <!-- <nav>
-      <nuxt-link to="/">Home</nuxt-link>
-      <nuxt-link to="/conferenceSessions">Sessions</nuxt-link>
-      <nuxt-link to="/speakers">Speakers</nuxt-link>
-      <nuxt-link to="/code-of-conduct">Code of conduct</nuxt-link>
-      <a v-if="conference.venue" :href="conference.ticket"
-        >Tickets
-      </a>
-    </nav> -->
-    <address v-if="conference.venue" class="venue">
-      <div>{{ conference.venue.name }}</div>
-      <div>{{ conference.venue.postCode }} {{ conference.venue.city }}</div>
-      <div>{{ conference.venue.country }}</div>
-    </address>
     <div class="power">
-      Powered by <a href="https://nuxtjs.org">Nuxt.js</a> and
-      <a href="https://www.sanity.io">Sanity.io</a> {{ year }}
+      Powered by
+      <b-link :href="siteSettings.rootURL">{{ siteSettings.siteName }}</b-link>
+      {{ year }} :: {{ siteSettings.phone }} :: {{ siteSettings.email }}
     </div>
   </footer>
 </template>
@@ -35,36 +22,10 @@ export default {
     }
     return {
       year: new Date().getFullYear(),
-      conference: data.$store.state.conference
+      siteSettings: data.$store.state.siteSettings
     }
   }
 }
 </script>
 
-<style scoped>
-@import '../styles/custom-properties.css';
-
-.footer {
-  padding: 1.5rem;
-  text-align: center;
-  font-size: var(--font-small-size);
-  line-height: var(--font-small-line-height);
-}
-
-.footer a {
-  color: inherit;
-  text-decoration: inherit;
-  padding: 1em 0.5em;
-}
-
-address.venue {
-  margin: 3em 1.5em 1.5em;
-  font-style: inherit;
-}
-
-.power a {
-  display: inline;
-  padding: 0;
-  text-decoration: underline;
-}
-</style>
+<style scoped></style>

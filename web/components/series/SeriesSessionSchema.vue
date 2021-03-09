@@ -28,8 +28,8 @@
       },
       "organizer": {
         "@type": "Organization",
-        "name": "{{ $siteVars().companyName }}",
-        "url": "{{ $siteVars().companyURL }}"
+        "name": "{{ siteSettings.companyName }}",
+        "url": "{{ siteSettings.rootURL }}"
       }
     }
   </script>
@@ -42,6 +42,14 @@ export default {
   props: {
     session: Object
     // showArchived: Boolean
+  },
+  data: data => {
+    if (!data.$store.state) {
+      return
+    }
+    return {
+      siteSettings: data.$store.state.siteSettings
+    }
   },
   methods: {
     sessionImage: function(session) {
@@ -70,7 +78,7 @@ export default {
       )
     },
     sessionURL: function() {
-      return `${this.$siteVars().rootURL}${this.$route.path}`
+      return `${this.siteSettings.rootURL}${this.$route.path}`
     }
   }
 }
