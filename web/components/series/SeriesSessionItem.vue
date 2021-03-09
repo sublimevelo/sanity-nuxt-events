@@ -7,9 +7,9 @@
     img-alt="session.persons[0].image.alt"
   >
     <template #header>
-      <h4 class="mb-0">
+      <h3 class="h4 mb-0">
         {{ session.title }}
-      </h4></template
+      </h3></template
     >
     <b-card-text v-if="session.archived" class="dt text-muted">
       {{
@@ -19,16 +19,35 @@
     <b-card-text v-else class="dt text-muted">
       {{ sessionDT(session.schedule.from, session.schedule.duration) }}
     </b-card-text>
+    <b-card-text>
+      {{ session.sessionType }}
+    </b-card-text>
     <b-card-text>{{ session.summary }}</b-card-text>
 
-    <b-card-text>
-      <strong>Presented by</strong>
-      <br />
-      <span v-for="(person, idx) in session.persons" :key="person._id">
-        {{ $personName(person.person)
-        }}<span v-if="!idx == session.persons.length - 1">, </span> </span
-      ><br />
-    </b-card-text>
+    <div v-if="session.persons.length">
+      <h4 class="h5">Presented by</h4>
+      <b-list-group flush>
+        <b-list-group-item v-for="person in session.persons" :key="person._id"
+          >{{ $personName(person.person) }}<br /><small
+            >{{ person.person.title }}, {{ person.person.institution }}
+          </small>
+        </b-list-group-item>
+      </b-list-group>
+    </div>
+    <!-- <h4 class="h5">Presented by</h4>
+    <div v-if="session.persons.length">
+      <b-list-group flush>
+        <b-list-group-item v-for="person in session.persons" :key="person._id"
+          >{{ $personName(person.person) }}<br /><small
+            >{{ person.person.title }}, {{ person.person.institution }}
+          </small>
+        </b-list-group-item>
+      </b-list-group>
+    </div>
+    <div v-else>
+      <p>TBA</p>
+    </div> -->
+
     <template #footer>
       <b-button
         :to="{ path: '/minis/sessions/' + session.slug.current }"
@@ -80,5 +99,9 @@ export default {
 
 .card {
   min-width: 18rem;
+  .list-group-item {
+    background: transparent;
+    padding: 0.5rem 0;
+  }
 }
 </style>
