@@ -20,20 +20,20 @@
           <p class="subtitle">
             This info won't show on the page in production, only for SEO
           </p>
-            <p>Summary:
-              <small>
-                <em>
-                  {{ info.summary }}
-                </em>
-              </small>
-            </p>
-            <p>Keywords:
-              <small v-for="k in info.keywords" :key="k">
-                <em>
-                  "{{ k }}", 
-                </em>
-              </small>
-            </p>
+          <p>
+            Summary:
+            <small>
+              <em>
+                {{ info.summary }}
+              </em>
+            </small>
+          </p>
+          <p>
+            Keywords:
+            <small v-for="k in info.keywords" :key="k">
+              <em> "{{ k }}", </em>
+            </small>
+          </p>
         </div>
       </b-col>
     </b-row>
@@ -50,11 +50,19 @@
         >
         <b-button
           v-if="numActiveSessions"
-          @click="showArchived = !showArchived"
+          @click="toggleArchivedSessions()"
           variant="primary"
           class="mb-3"
           >{{ showArchived ? 'Hide' : 'Show' }} Archived Sessions</b-button
         >
+        <b-toast
+          toaster="b-toaster-bottom-left"
+          id="session-toast"
+          title="Updating session list"
+          auto-hide-delay="3000"
+        >
+          {{ !showArchived ? 'Hiding' : 'Showing' }} archived sessions
+        </b-toast>
         <SeriesSessionList
           :sessions="info.program"
           :showArchived="showArchived"
@@ -123,6 +131,18 @@ export default {
       showArchived: false,
       numActiveSessions: 0,
       showMD: true
+    }
+  },
+  methods: {
+    toggleArchivedSessions() {
+      this.showArchived = !this.showArchived
+      this.$bvToast.show('session-toast')
+      // this.$bvToast.toast(`Showing archived sessions`, {
+      //   title: `Updating session list`,
+      //   toaster: toaster,
+      //   solid: true
+      //   // 'auto-hide-delay': 1000
+      // })
     }
   },
   mounted() {
