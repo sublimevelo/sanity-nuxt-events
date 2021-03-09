@@ -10,22 +10,31 @@
     <b-row>
       <b-col sm="7">
         <h2>About {{ info.name }}</h2>
-        <div v-if="$debug">
-          <p></p>
-          <p class="subtitle">
-            [This blurb won't show on the page in production, only for SEO]
-            <small>
-              <em>
-                {{ info.blurb }}
-              </em>
-            </small>
-          </p>
-        </div>
         <BlockContent :blocks="info.description" />
       </b-col>
       <b-col sm="5">
         <h2>Request More Information</h2>
         <MoreInfoForm />
+        <div v-if="$debug() && showMD">
+          <h4 class="mt-3" @click="showMD = !showMD">Metadata (x)</h4>
+          <p class="subtitle">
+            This info won't show on the page in production, only for SEO
+          </p>
+            <p>Summary:
+              <small>
+                <em>
+                  {{ info.summary }}
+                </em>
+              </small>
+            </p>
+            <p>Keywords:
+              <small v-for="k in info.keywords" :key="k">
+                <em>
+                  "{{ k }}", 
+                </em>
+              </small>
+            </p>
+        </div>
       </b-col>
     </b-row>
     <b-row>
@@ -112,7 +121,8 @@ export default {
   data() {
     return {
       showArchived: false,
-      numActiveSessions: 0
+      numActiveSessions: 0,
+      showMD: true
     }
   },
   mounted() {
