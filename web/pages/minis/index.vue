@@ -52,6 +52,39 @@
     <b-row>
       <b-col sm="12">
         <h2>Searchable Archived Sessions</h2>
+        <p>
+          We welcome you to search all previous sessions for the topic of your
+          choice. Hours of content can be time-consuming to review and the same
+          topic may be addressed in multiple sessions.
+        </p>
+        <p>
+          Have fun and we welcome you to join us on the first Wednesday of each
+          month for another Connections: Mini!
+        </p>
+        <div>
+          <b-button v-b-toggle.collapse-1 variant="primary"
+            >How do I search?</b-button
+          >
+          <b-collapse id="collapse-1" class="mt-2">
+            <b-card>
+              <p class="card-text">
+                Simply start the video below and click the "magnifying glass"
+                icon
+                <b-icon
+                  icon="search"
+                  class="rounded bg-primary p-1"
+                  variant="light"
+                  style="font-size: 1.3rem"
+                ></b-icon>
+                in the video window. Enter any topic or search word of your
+                choice and be taken to the location where your topic was
+                discussed - within any Mini presentation - or multiple
+                presentations.
+              </p>
+            </b-card>
+          </b-collapse>
+        </div>
+        <p></p>
         <div>
           <iframe
             width="100%"
