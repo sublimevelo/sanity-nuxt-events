@@ -1,10 +1,25 @@
 <template>
   <footer class="footer">
-    <div class="power">
-      Powered by
-      <b-link :href="siteSettings.rootURL">{{ siteSettings.siteName }}</b-link>
-      {{ year }} :: {{ siteSettings.phone }} :: {{ siteSettings.email }}
-    </div>
+    <b-container>
+      <b-row>
+        <b-col md="6">
+          &copy;<b-link :href="siteSettings.rootURL">{{
+            siteSettings.siteName
+          }}</b-link>
+          {{ year }}
+        </b-col>
+        <b-col md="6" style="text-align: right;">
+          <a
+            v-if="siteSettings.phone"
+            :href="'tel:' + linkPhone(siteSettings.phone)"
+            >{{ siteSettings.phone }}</a
+          ><br />
+          <a v-if="siteSettings.email" :href="'mailto:' + siteSettings.email">{{
+            siteSettings.email
+          }}</a>
+        </b-col>
+      </b-row>
+    </b-container>
   </footer>
 </template>
 
@@ -24,8 +39,22 @@ export default {
       year: new Date().getFullYear(),
       siteSettings: data.$store.state.siteSettings
     }
+  },
+  methods: {
+    linkPhone(num) {
+      if (!num) {
+        return ''
+      }
+      return num.replace(/[\.-]/g, '')
+    }
   }
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.footer {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  background-color: #f5f5f5;
+}
+</style>
