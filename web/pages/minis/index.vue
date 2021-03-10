@@ -20,29 +20,47 @@
     <b-row>
       <b-col sm="12">
         <h2 class="title">
-          {{ info.name }},
-          <small class="text-muted"
-            >{{ showArchived ? 'All' : 'Upcoming' }} Sessions</small
+          {{ info.name }}
+          <small class="text-muted">
+            - {{ showArchived ? 'All' : 'Upcoming' }} Sessions</small
           >
         </h2>
         <b-alert v-if="!numActiveSessions" variant="info" show
           >No upcoming sesssions. Showing archived sessions.</b-alert
         >
-        <b-button
-          v-if="numActiveSessions"
-          @click="toggleArchivedSessions()"
-          variant="primary"
-          class="mb-3"
-          >{{ showArchived ? 'Hide' : 'Show' }} Archived Sessions</b-button
+        <b-button-toolbar
+          aria-label="Toolbar with button groups and dropdown menu"
         >
+          <b-button
+            v-if="numActiveSessions"
+            @click="toggleArchivedSessions()"
+            variant="primary"
+            class="mr-1 mb-3"
+            >{{ showArchived ? 'Hide' : 'Show' }} Archived Sessions</b-button
+          >
+          <!-- <b-dropdown
+            id="dropdown-dropright"
+            dropright
+            text="Filter by topic"
+            variant="primary"
+            class="mb-3"
+          >
+            <b-dropdown-item href="#">All</b-dropdown-item>
+            <b-dropdown-item href="#">Another action</b-dropdown-item>
+            <b-dropdown-item href="#">Something else here</b-dropdown-item>
+          </b-dropdown> -->
+        </b-button-toolbar>
+
         <b-toast
           toaster="b-toaster-bottom-left"
           id="session-toast"
-          title="Updating session list"
+          title="Updating session list..."
+          variant="primary"
           auto-hide-delay="3000"
         >
-          Done. {{ !showArchived ? 'Hiding' : 'Showing' }} archived sessions
+          {{ !showArchived ? 'Hiding' : 'Showing' }} archived sessions. Done.
         </b-toast>
+
         <SeriesSessionList
           :sessions="info.program"
           :showArchived="showArchived"
