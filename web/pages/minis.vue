@@ -22,6 +22,8 @@
   </div>
 </template>
 <script>
+// This content is included in ALL pages under /minis
+// <NuxtChild /> is the entry point for child content
 import minisNavItems from '~/lib/minisNavItems'
 import { pull, isEqual } from 'lodash'
 export default {
