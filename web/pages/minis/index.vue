@@ -15,26 +15,6 @@
       <b-col sm="5">
         <h2>Request More Information</h2>
         <MoreInfoForm />
-        <div v-if="$debug() && showMD">
-          <h4 class="mt-3" @click="showMD = !showMD">Metadata (x)</h4>
-          <p class="subtitle">
-            This info won't show on the page in production, only for SEO
-          </p>
-          <p>
-            Summary:
-            <small>
-              <em>
-                {{ info.summary }}
-              </em>
-            </small>
-          </p>
-          <p>
-            Keywords:
-            <small v-for="k in info.keywords" :key="k">
-              <em> "{{ k }}", </em>
-            </small>
-          </p>
-        </div>
       </b-col>
     </b-row>
     <b-row>
