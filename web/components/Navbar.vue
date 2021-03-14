@@ -1,6 +1,6 @@
 <template>
   <header class="header">
-    <b-navbar toggleable="lg" type="dark" variant="primary" class="mb-3">
+    <b-navbar toggleable="lg" type="dark" variant="primary">
       <b-container>
         <b-navbar-brand href="/">{{ title }}</b-navbar-brand>
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>

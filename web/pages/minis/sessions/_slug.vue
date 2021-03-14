@@ -1,42 +1,45 @@
 <template>
-  <b-container>
-    <b-row>
-      <b-col sm="12">
-        <SeriesSessionSchema :session="session" />
-        <section>
-          <h1 class="title">{{ session.title }}</h1>
-          <b-row>
-            <b-col sm="8">
-              <b-img
-                v-if="session.image"
-                :src="processImage(session.image)"
-                fluid
-                alt="Responsive image"
-                class="mb-3"
-              ></b-img>
-              <div class="mb-3 dt text-muted">
-                {{
-                  sessionDT(session.schedule.from, session.schedule.duration)
-                }}
-              </div>
-              <BlockContent
-                v-if="session.description"
-                :blocks="session.description"
-              />
-              <div v-else>No description provided</div>
-            </b-col>
-            <b-col sm="4">
-              <PersonBlock
-                v-for="person in session.persons"
-                :key="person._id"
-                :person="person"
-              />
-            </b-col>
-          </b-row>
-        </section>
-      </b-col>
-    </b-row>
-  </b-container>
+  <div>
+    <MinisTabs />
+    <b-container>
+      <b-row>
+        <b-col sm="12">
+          <SeriesSessionSchema :session="session" />
+          <section>
+            <h1 class="title">{{ session.title }}</h1>
+            <b-row>
+              <b-col sm="8">
+                <b-img
+                  v-if="session.image"
+                  :src="processImage(session.image)"
+                  fluid
+                  alt="Responsive image"
+                  class="mb-3"
+                ></b-img>
+                <div class="mb-3 dt text-muted">
+                  {{
+                    sessionDT(session.schedule.from, session.schedule.duration)
+                  }}
+                </div>
+                <BlockContent
+                  v-if="session.description"
+                  :blocks="session.description"
+                />
+                <div v-else>No description provided</div>
+              </b-col>
+              <b-col sm="4">
+                <PersonBlock
+                  v-for="person in session.persons"
+                  :key="person._id"
+                  :person="person"
+                />
+              </b-col>
+            </b-row>
+          </section>
+        </b-col>
+      </b-row>
+    </b-container>
+  </div>
 </template>
 
 <script>
@@ -44,6 +47,8 @@ import groq from 'groq'
 import sanityClient from '~/sanityClient'
 import BlockContent from 'sanity-blocks-vue-component'
 import PersonBlock from '~/components/blockContent/PersonBlock'
+import MinisTabs from '~/components/nav/MinisTabs'
+
 import SeriesSessionSchema from '~/components/series/SeriesSessionSchema'
 
 import sessionDT from '~/lib/sessionDT'
@@ -69,7 +74,8 @@ export default {
   components: {
     BlockContent,
     PersonBlock,
-    SeriesSessionSchema
+    SeriesSessionSchema,
+    MinisTabs
     // SocialLinks
   },
   data() {

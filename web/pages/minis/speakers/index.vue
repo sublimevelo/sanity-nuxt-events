@@ -1,107 +1,115 @@
 <template>
-  <b-container>
-    <b-row>
-      <b-col
-        ><b-list-group>
-          <b-list-group-item
-            v-for="person in people"
-            :key="person._id"
-            :href="'#' + person.slug.current"
-          >
-            <b-media vertical-align="center">
-              <template #aside>
-                <b-img
-                  :src="
-                    $urlFor(person.image)
-                      .width(60)
-                      .height(60)
-                      .url()
-                  "
-                  alt="placeholder"
+  <div>
+    <MinisTabs />
+    <b-container>
+      <b-row>
+        <b-col
+          ><b-list-group>
+            <b-list-group-item
+              v-for="person in people"
+              :key="person._id"
+              :href="'#' + person.slug.current"
+            >
+              <b-media vertical-align="center">
+                <template #aside>
+                  <b-img
+                    :src="
+                      $urlFor(person.image)
+                        .width(60)
+                        .height(60)
+                        .url()
+                    "
+                    alt="placeholder"
+                  >
+                  </b-img>
+                </template>
+                <h2 class="h6 mt-0 mb-0">{{ $personName(person) }}</h2>
+                <p>
+                  <small>{{ person.title }}, {{ person.institution }}</small>
+                </p>
+              </b-media>
+            </b-list-group-item>
+          </b-list-group>
+          <!-- <div v-for="person in people" :key="person._id">
+            <b-link :href="'#' + person.slug.current">
+              <b-media vertical-align="center" class="mb-2">
+                <template #aside>
+                  <b-img
+                    :src="
+                      $urlFor(person.image)
+                        .width(60)
+                        .height(60)
+                        .url()
+                    "
+                    alt="placeholder"
+                  ></b-img>
+                </template>
+                <h2 class="h6 mt-0 mb-0">{{ $personName(person) }}</h2>
+                <p>
+                  <small>{{ person.title }}, {{ person.institution }}</small>
+                </p>
+              </b-media>
+            </b-link>
+          </div> -->
+        </b-col>
+      </b-row>
+      <b-row
+        v-for="person in people"
+        :key="person._id"
+        :id="person.slug.current"
+      >
+        <b-col sm="12">
+          <b-row>
+            <b-col sm="7">
+              <h2>
+                {{ $personName(person) }}
+              </h2>
+              <p>
+                <SocialLinks :socials="person.socials" />
+              </p>
+              <p class="lead">{{ person.title }}, {{ person.institution }}</p>
+              <BlockContent :blocks="person.bio" />
+            </b-col>
+            <b-col sm="5">
+              <b-img
+                v-if="person.image"
+                :src="processImage(person.image)"
+                fluid
+                :alt="$personName(person)"
+                class="mb-3"
+              ></b-img>
+              <h3>Sessions</h3>
+              <b-list-group>
+                <b-list-group-item
+                  v-for="session in person.sessions"
+                  :key="session._id"
+                  :href="'/minis/sessions/' + session.slug.current"
+                  >{{ session.title }}</b-list-group-item
                 >
-                </b-img>
-              </template>
-              <h2 class="h6 mt-0 mb-0">{{ $personName(person) }}</h2>
-              <p>
-                <small>{{ person.title }}, {{ person.institution }}</small>
-              </p>
-            </b-media>
-          </b-list-group-item>
-        </b-list-group>
-        <!-- <div v-for="person in people" :key="person._id">
-          <b-link :href="'#' + person.slug.current">
-            <b-media vertical-align="center" class="mb-2">
-              <template #aside>
-                <b-img
-                  :src="
-                    $urlFor(person.image)
-                      .width(60)
-                      .height(60)
-                      .url()
-                  "
-                  alt="placeholder"
-                ></b-img>
-              </template>
-              <h2 class="h6 mt-0 mb-0">{{ $personName(person) }}</h2>
-              <p>
-                <small>{{ person.title }}, {{ person.institution }}</small>
-              </p>
-            </b-media>
-          </b-link>
-        </div> -->
-      </b-col>
-    </b-row>
-    <b-row v-for="person in people" :key="person._id" :id="person.slug.current">
-      <b-col sm="12">
-        <b-row>
-          <b-col sm="7">
-            <h2>
-              {{ $personName(person) }}
-            </h2>
-            <p>
-              <SocialLinks :socials="person.socials" />
-            </p>
-            <p class="lead">{{ person.title }}, {{ person.institution }}</p>
-            <BlockContent :blocks="person.bio" />
-          </b-col>
-          <b-col sm="5">
-            <b-img
-              v-if="person.image"
-              :src="processImage(person.image)"
-              fluid
-              :alt="$personName(person)"
-              class="mb-3"
-            ></b-img>
-            <h3>Sessions</h3>
-            <b-list-group>
-              <b-list-group-item
-                v-for="session in person.sessions"
-                :key="session._id"
-                :href="'/minis/sessions/' + session.slug.current"
-                >{{ session.title }}</b-list-group-item
-              >
-            </b-list-group>
-          </b-col>
-        </b-row>
-        <b-row>
-          <b-col sm="7"> </b-col>
-          <b-col sm="5">
-            <!-- <ul>
-              <li v-for="session in person.sessions" :key="session._id">
-                {{ session.title }}
-              </li>
-            </ul> -->
-          </b-col>
-        </b-row>
-      </b-col>
-    </b-row>
-  </b-container>
+              </b-list-group>
+            </b-col>
+          </b-row>
+          <b-row>
+            <b-col sm="7"> </b-col>
+            <b-col sm="5">
+              <!-- <ul>
+                <li v-for="session in person.sessions" :key="session._id">
+                  {{ session.title }}
+                </li>
+              </ul> -->
+            </b-col>
+          </b-row>
+        </b-col>
+      </b-row>
+    </b-container>
+  </div>
 </template>
 
 <script>
 import sanityClient from '~/sanityClient'
 import BlockContent from 'sanity-blocks-vue-component'
 import SocialLinks from '~/components/blockContent/SocialLinks'
+import MinisTabs from '~/components/nav/MinisTabs'
 
 import { filter } from 'lodash'
 
@@ -122,7 +130,8 @@ const query = `
 export default {
   components: {
     SocialLinks,
-    BlockContent
+    BlockContent,
+    MinisTabs
   },
   async asyncData() {
     let data = await sanityClient.fetch(query)

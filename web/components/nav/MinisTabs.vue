@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="mt-3">
     <b-container>
       <b-row>
         <b-col sm="12">
@@ -18,7 +18,6 @@
         </b-col>
       </b-row>
     </b-container>
-    <NuxtChild />
   </div>
 </template>
 <script>
