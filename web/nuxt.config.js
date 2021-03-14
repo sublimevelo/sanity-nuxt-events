@@ -41,7 +41,8 @@ export default {
     '~/plugins/debug',
     '~/plugins/imageBuilder',
     '~/plugins/siteSettings',
-    '~/plugins/personName'
+    '~/plugins/personName',
+    { src: '~/plugins/parallax.js', ssr: false }
   ],
 
   /*
