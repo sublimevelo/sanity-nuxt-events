@@ -1,7 +1,6 @@
 export default {
   widgets: [
-    
-    {name: 'structure-menu'},
+    { name: 'structure-menu' },
     {
       name: 'project-info',
       options: {
@@ -34,21 +33,29 @@ export default {
             value: 'https://github.com/sublimevelo/sanity-nuxt-events',
             category: 'Code'
           },
-          {title: 'Frontend', value: 'https://sanity-nuxt-events-web-bjuwjovp.netlify.app', category: 'apps'}
+          {
+            title: 'Frontend',
+            value: 'https://sanity-nuxt-events-web-bjuwjovp.netlify.app',
+            category: 'apps'
+          }
         ]
       }
     },
-    {name: 'project-users', layout: {height: 'auto'}},
+    { name: 'project-users', layout: { height: 'auto' } },
     {
       name: 'document-list',
-      options: {title: 'Recently created conferenceSessions', order: '_createdAt desc', types: ['conferenceSession']},
-      layout: {width: 'medium'}
+      options: {
+        title: 'Recently created session content',
+        order: '_createdAt desc',
+        types: ['seriesSession', 'peron']
+      },
+      layout: { width: 'medium' }
     },
     {
       name: 'sanity-tutorials',
       options: {
         templateRepoId: 'sanity-io/sanity-template-nuxt-events'
       }
-    },
+    }
   ]
 }
