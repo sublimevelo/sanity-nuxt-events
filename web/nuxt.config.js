@@ -33,6 +33,8 @@ export default {
    ** Global CSS
    */
   css: [{ src: '~/styles/app.scss' }],
+  // css: [{ src: '~/styles/app.scss' }, { src: '~/assets/landkit-theme/dist/assets/css/theme.min.css' }],
+  // css: [{ src: '~/assets/landkit-theme/dist/assets/css/theme.min.css' }],
 
   /*
    ** Plugins to load before mounting the App
@@ -66,19 +68,19 @@ export default {
   // conference: () => {
   //   return sanityClient.fetch('*[_id == "conference"]').then(res => res)
   // },
-  conference: () => {
-    return sanityClient
-      .fetch(
-        `
-    {
-      "info": *[_id == "conference"] | order(conference.schedule.from) {
-        ..., image { ..., asset->}
-      }[0]
-    }
-  `
-      )
-      .then(res => res)
-  },
+  // conference: () => {
+  //   return sanityClient
+  //     .fetch(
+  //       `
+  //   {
+  //     "info": *[_id == "conference"] | order(conference.schedule.from) {
+  //       ..., image { ..., asset->}
+  //     }[0]
+  //   }
+  // `
+  //     )
+  //     .then(res => res)
+  // },
 
   /*
    ** Generate dynamic routes from data from sanity.
