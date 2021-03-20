@@ -1,10 +1,10 @@
 <template>
   <div>
     <MinisTabs />
+    <SeriesSessionSchema :session="session" />
     <b-container>
       <b-row>
         <b-col sm="12">
-          <SeriesSessionSchema :session="session" />
           <section>
             <h1 class="title">{{ session.title }}</h1>
             <b-row>
