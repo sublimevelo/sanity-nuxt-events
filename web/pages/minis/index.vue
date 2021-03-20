@@ -1,10 +1,16 @@
 <template>
   <div>
-    <div class="stlouis jarallax" data-speed="0.5" style="text-align: center">
-      <img src="~/assets/images/stlouis-banner.jpeg" class="jarallax-img" />
-      <h1 class="title pt-3" style="color: #fff">
-        {{ info.name }}
-      </h1>
+    <div class="banner rellax-header" data-rellax-speed="-2">
+      <b-container>
+        <b-row>
+          <b-col sm="12">
+            <header class="header rellax-text" data-rellax-speed="-1">
+              <h1 class="title">{{ info.name }}</h1>
+            </header>
+          </b-col>
+        </b-row>
+      </b-container>
+      <div class="banner-image "></div>
     </div>
     <MinisTabs />
     <b-container>
@@ -135,6 +141,8 @@ import MoreInfoForm from '~/components/forms/MoreInfoForm'
 import { filter, sortBy, partition } from 'lodash'
 import add from 'date-fns/add'
 
+import initParallax from '@/utils/initParallax'
+
 // groq can't deep filter on arrays, so we'll need to filter out dates in script :(
 const queryCurrentSeries = `
 {
@@ -183,6 +191,7 @@ export default {
     if (!this.numActiveSessions) {
       this.showArchived = true
     }
+    initParallax()
   },
   async asyncData() {
     let data = await sanityClient.fetch(queryCurrentSeries)
@@ -224,6 +233,23 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.banner {
+  // margin-top: 53px;
+  height: 400px;
+  overflow: hidden;
+  position: relative;
+  .header {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    color: #fff;
+    text-align: center;
+  }
+}
+.banner-image {
+  background: url('~assets/images/stlouis-banner.jpeg');
+  height: 600px;
+}
 .jarallax.stlouis {
   height: 400px;
   /* position: relative; */
