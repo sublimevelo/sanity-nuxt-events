@@ -73,11 +73,21 @@ export default {
       type: 'array',
       title: 'Keywords',
       description: 'Add keywords that describe the series.',
-      of: [{type: 'string'}],
+      of: [{ type: 'string' }],
       options: {
         layout: 'tags'
       }
     },
+    {
+      name: 'registrationURL',
+      type: 'url',
+      title: 'Registration URL'
+    },
+    {
+      name: 'eventURL',
+      type: 'url',
+      title: 'Event URL'
+    }
   ],
   orderings: [
     {
