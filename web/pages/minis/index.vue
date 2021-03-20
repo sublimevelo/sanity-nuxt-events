@@ -14,13 +14,6 @@
     </div>
     <MinisTabs />
     <b-container>
-      <!-- <b-row>
-        <b-col sm="12">
-          <header class="header">
-            <h1 class="title">{{ info.name }}</h1>
-          </header>
-        </b-col>
-      </b-row> -->
       <b-row>
         <b-col sm="7">
           <h2 class="title">About {{ info.name }}</h2>
@@ -33,50 +26,7 @@
       </b-row>
       <b-row>
         <b-col sm="12">
-          <h2 class="title mb-0">
-            {{ info.name }}
-            <small class="text-muted">
-              - {{ showArchived ? 'All' : 'Upcoming' }} Sessions</small
-            >
-          </h2>
-          <b-alert v-if="!numActiveSessions" variant="info" show
-            >No upcoming sesssions. Showing archived sessions.</b-alert
-          >
-          <b-button-toolbar
-            aria-label="Toolbar with button groups and dropdown menu"
-          >
-            <b-button
-              v-if="numActiveSessions"
-              @click="toggleArchivedSessions()"
-              variant="primary"
-              class="mr-1 mb-3"
-              >{{ showArchived ? 'Hide' : 'Show' }} Archived Sessions</b-button
-            >
-            <!-- <b-dropdown
-              id="dropdown-dropright"
-              dropright
-              text="Filter by topic"
-              variant="primary"
-              class="mb-3"
-            >
-              <b-dropdown-item href="#">All</b-dropdown-item>
-              <b-dropdown-item href="#">Another action</b-dropdown-item>
-              <b-dropdown-item href="#">Something else here</b-dropdown-item>
-            </b-dropdown> -->
-          </b-button-toolbar>
-          <b-toast
-            toaster="b-toaster-bottom-left"
-            id="session-toast"
-            title="Updating session list..."
-            variant="primary"
-            auto-hide-delay="3000"
-          >
-            {{ !showArchived ? 'Hiding' : 'Showing' }} archived sessions. Done.
-          </b-toast>
-          <SeriesSessionList
-            :sessions="info.program"
-            :showArchived="showArchived"
-          />
+          <SeriesBlock :title="info.name" />
         </b-col>
       </b-row>
       <b-row>
@@ -135,15 +85,12 @@
 import sanityClient from '~/sanityClient'
 import BlockContent from 'sanity-blocks-vue-component'
 import MinisTabs from '~/components/nav/MinisTabs'
+import SeriesBlock from '~/components/series/SeriesBlock'
 import SeriesSessionList from '~/components/series/SeriesSessionList'
 import MoreInfoForm from '~/components/forms/MoreInfoForm'
 
-import { filter, sortBy, partition } from 'lodash'
-import add from 'date-fns/add'
-
 import initParallax from '@/utils/initParallax'
 
-// groq can't deep filter on arrays, so we'll need to filter out dates in script :(
 const queryCurrentSeries = `
 {
   "info": *[_type == "series" && slug.current == "connections-minis"][0] {
@@ -151,35 +98,20 @@ const queryCurrentSeries = `
     _id,
     image { ..., asset->},
       organizers[]->,
-      program[] {
-      session-> {
-        ...,
-        image { ..., asset->},
-        persons[] {
-          ...,
-          person-> {
-            ...,
-          }
-        }
-      }
-    }
 	}
 }
 `
 
 export default {
   components: {
+    SeriesBlock,
     SeriesSessionList,
     BlockContent,
     MinisTabs,
     MoreInfoForm
   },
   data() {
-    return {
-      showArchived: false,
-      numActiveSessions: 0,
-      showMD: true
-    }
+    return {}
   },
   methods: {
     toggleArchivedSessions() {
@@ -194,27 +126,12 @@ export default {
     initParallax()
   },
   async asyncData() {
-    let data = await sanityClient.fetch(queryCurrentSeries)
-
-    let mapped = data.info.program.map(function(session) {
-      session.session.archived =
-        add(new Date(session.session.schedule.from), { days: 3 }) < new Date()
-      return session
-    })
-
-    mapped = sortBy(mapped, ['session.schedule.from'])
-    data.info.program = mapped
-
-    data.numActiveSessions = filter(mapped, function(o) {
-      return !o.session.archived
-    }).length
-
-    return data
+    return await sanityClient.fetch(queryCurrentSeries)
   },
   head() {
     return {
       title:
-        this.info.name + ' | ' + this.$store.state.siteSettings.companyName,
+        'Connections: Minis | ' + this.$store.state.siteSettings.companyName,
       meta: [
         {
           hid: 'description',
