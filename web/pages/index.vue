@@ -1,21 +1,9 @@
 <template>
   <div>
     <b-container class="mt-3">
-      <!-- <b-row>
-        <b-col sm="12">
-          <header class="header">
-    
-          </header>
-        </b-col>
-      </b-row> -->
       <b-row>
         <b-col sm="12">
           <h1>LEAD Philanthropy</h1>
-          <!-- <p>
-            Jarallax is an open-source javascript library which makes adjusting
-            css based on interaction easy. With Jarallax it's easy to create a
-            parallax scrolling website.
-          </p> -->
           <p>
             Non voluptate cupidatat incididunt fugiat pariatur velit sint irure
             id eiusmod proident irure. Consequat ea eu mollit aute Lorem Lorem
