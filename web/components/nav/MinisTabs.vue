@@ -40,4 +40,11 @@ export default {
   }
 }
 </script>
-<style scoped></style>
+<style scoped lang="scss">
+.nav-tabs > .nav-item > .nav-link {
+  background-color: #fff;
+  &.active {
+    background-color: #1259a0;
+  }
+}
+</style>
