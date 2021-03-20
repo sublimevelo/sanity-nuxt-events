@@ -23,17 +23,17 @@
       </b-row> -->
       <b-row>
         <b-col sm="7">
-          <h2>About {{ info.name }}</h2>
+          <h2 class="title">About {{ info.name }}</h2>
           <BlockContent :blocks="info.description" />
         </b-col>
         <b-col sm="5">
-          <h2>Request More Information</h2>
+          <h2 class="title">Request More Information</h2>
           <MoreInfoForm />
         </b-col>
       </b-row>
       <b-row>
         <b-col sm="12">
-          <h2 class="title">
+          <h2 class="title mb-0">
             {{ info.name }}
             <small class="text-muted">
               - {{ showArchived ? 'All' : 'Upcoming' }} Sessions</small
@@ -81,7 +81,7 @@
       </b-row>
       <b-row>
         <b-col sm="12">
-          <h2>Searchable Archived Sessions</h2>
+          <h2 class="title">Searchable Archived Sessions</h2>
           <p>
             We welcome you to search all previous sessions for the topic of your
             choice. Hours of content can be time-consuming to review and the
