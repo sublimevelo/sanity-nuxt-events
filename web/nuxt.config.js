@@ -47,7 +47,11 @@ module.exports = {
   /*
    ** Global CSS
    */
-  css: ['~/assets/sass/now-ui-kit.scss', '~/assets/sass/demo.scss'],
+  css: [
+    '~/assets/sass/now-ui-kit.scss',
+    '~/assets/sass/demo.scss',
+    '~/assets/sass/theme.scss'
+  ],
   /*
    ** Plugins to load before mounting the App
    */
