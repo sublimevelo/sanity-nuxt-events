@@ -6,11 +6,17 @@
     :img-src="sessionImage(session)"
     img-alt="session.persons[0].image.alt"
   >
-    <template #header>
-      <h3 class="h4 mb-0">
-        {{ session.title }}
-      </h3></template
-    >
+    <!-- <div slot="header" class="mt-2">
+      {{ session.sessionType }}
+    </div> -->
+    <h3 class="card-title h4 mb-0">
+      {{ session.title }}
+    </h3>
+    <h6 class="subtitle mt-2 text-primary">
+      <b-icon icon="info-circle" style="font-size: 1.3rem"></b-icon>
+
+      {{ session.sessionType }}
+    </h6>
     <b-card-text v-if="session.archived" class="dt text-muted">
       {{
         sessionDT(session.schedule.from, session.schedule.duration, true, false)
@@ -18,9 +24,6 @@
     </b-card-text>
     <b-card-text v-else class="dt text-muted">
       {{ sessionDT(session.schedule.from, session.schedule.duration) }}
-    </b-card-text>
-    <b-card-text>
-      {{ session.sessionType }}
     </b-card-text>
     <b-card-text>{{ session.summary }}</b-card-text>
 
@@ -39,27 +42,14 @@
         </b-list-group-item>
       </b-list-group>
     </div>
-    <!-- <h4 class="h5">Presented by</h4>
-    <div v-if="session.persons.length">
-      <b-list-group flush>
-        <b-list-group-item v-for="person in session.persons" :key="person._id"
-          >{{ $personName(person.person) }}<br /><small
-            >{{ person.person.title }}, {{ person.person.institution }}
-          </small>
-        </b-list-group-item>
-      </b-list-group>
-    </div>
-    <div v-else>
-      <p>TBA</p>
-    </div> -->
 
-    <template #footer>
+    <b-card-footer>
       <b-button
         :to="{ path: '/minis/sessions/' + session.slug.current }"
         variant="primary"
         >More info</b-button
       >
-    </template>
+    </b-card-footer>
   </b-card>
 </template>
 <script>
@@ -110,6 +100,7 @@ export default {
 
 .card {
   min-width: 18rem;
+  max-width: 20rem;
   .list-group-item {
     background: transparent;
     padding: 0.5rem 0;
