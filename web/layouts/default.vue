@@ -1,6 +1,6 @@
 <template>
   <div>
-    <main-navbar :color-on-scroll="450"></main-navbar>
+    <main-navbar></main-navbar>
     <nuxt />
     <!-- <main-footer></main-footer> -->
   </div>
