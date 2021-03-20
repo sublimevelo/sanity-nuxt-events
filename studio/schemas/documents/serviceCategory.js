@@ -26,6 +26,18 @@ export default {
       name: 'image',
       type: 'mainImage',
       title: 'Category image'
+    },
+    {
+      name: 'services',
+      type: 'array',
+      title: 'Services',
+      description: 'Publish one or more services and set a reference to them here.',
+      of: [
+        {
+          type: 'reference',
+          to: [{ type: 'service' }]
+        }
+      ]
     }
   ],
   preview: {
@@ -35,15 +47,3 @@ export default {
     }
   }
 }
-
-// export default {
-//   name: 'socials',
-//   title: 'Socials',
-//   type: 'array',
-//   of: [
-//     {
-//       type: 'socialLink',
-//       title: 'Social Link'
-//     }
-//   ]
-// }

@@ -20,19 +20,19 @@ export default {
         source: 'name'
       }
     },
-    {
-      name: 'order',
-      type: 'number',
-      title: 'Category Order',
-      description: "The service's order in listings"
-    },
-    {
-      name: 'category',
-      type: 'reference',
-      title: 'Category',
-      description: 'Publish one or more categories and set a reference to them here.',
-      to: [{ type: 'serviceCategory' }]
-    },
+    // {
+    //   name: 'order',
+    //   type: 'number',
+    //   title: 'Category Order',
+    //   description: "The service's order in listings"
+    // },
+    // {
+    //   name: 'category',
+    //   type: 'reference',
+    //   title: 'Category',
+    //   description: 'Publish one or more categories and set a reference to them here.',
+    //   to: [{ type: 'serviceCategory' }]
+    // },
     {
       name: 'image',
       type: 'mainImage',
