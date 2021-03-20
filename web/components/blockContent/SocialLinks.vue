@@ -1,15 +1,15 @@
 <template>
-  <span>
+  <div>
     <span v-for="social in socials" :key="social._id">
       <b-link :href="social.url">
         <b-icon
           :icon="getIcon(social.title)"
-          class="h2 mr-2 rounded bg-primary p-1"
+          class="h2 mr-2 mb-0 rounded bg-primary p-1"
           variant="light"
         ></b-icon
       ></b-link>
     </span>
-  </span>
+  </div>
 </template>
 
 <script>
@@ -35,3 +35,5 @@ export default {
   }
 }
 </script>
+
+<style lang="scss"></style>
