@@ -100,20 +100,27 @@ export default {
         .height(250)
       return image.url()
     }
+  },
+  head() {
+    return {
+      title:
+        'Connections: Minis Speakers | ' +
+        this.$store.state.siteSettings.companyName
+      // title: 'LEAD Services | '
+      // meta: [
+      //   {
+      //     hid: 'description',
+      //     name: 'description',
+      //     content: this.info.summary
+      //   },
+      //   {
+      //     hid: 'keywords',
+      //     name: 'keywords',
+      //     content: this.info.keywords.join(',')
+      //   }
+      // ]
+    }
   }
-  //   head() {
-  //     const { name } = this.$store.getters.conference
-  //     return {
-  //       title: `Sessions | ${name}`,
-  //       meta: [
-  //         {
-  //           hid: 'description',
-  //           name: 'description',
-  //           content: this.plainTextBio
-  //         }
-  //       ]
-  //     }
-  //   }
 }
 </script>
 

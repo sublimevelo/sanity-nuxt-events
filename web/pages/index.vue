@@ -50,7 +50,25 @@
 </template>
 
 <script>
-export default {}
+export default {
+  head() {
+    return {
+      title: this.$store.state.siteSettings.companyName
+      // meta: [
+      //   {
+      //     hid: 'description',
+      //     name: 'description',
+      //     content: this.info.summary
+      //   },
+      //   {
+      //     hid: 'keywords',
+      //     name: 'keywords',
+      //     content: this.info.keywords.join(',')
+      //   }
+      // ]
+    }
+  }
+}
 </script>
 
 <style scoped></style>

@@ -203,11 +203,9 @@ export default {
     return data
   },
   head() {
-    // if (!this.haveInfo) {
-    //   return
-    // }
     return {
-      title: this.info.name,
+      title:
+        this.info.name + ' | ' + this.$store.state.siteSettings.companyName,
       meta: [
         {
           hid: 'description',
