@@ -10,7 +10,7 @@
       "eventStatus": "https://schema.org/EventScheduled",
       "location": {
         "@type": "VirtualLocation",
-        "url": "{{ sessionURL }}"
+        "url": "{{ sessionURL(session) }}"
       },
       "image": "{{ sessionImage(session)}}",
       "description": "{{ session.summary }}",
@@ -64,6 +64,12 @@ export default {
         image = image.saturation(-100)
       }
       return image.url()
+    },
+    sessionURL: function(session) {
+      if (session.eventURL) {
+        return session.eventURL
+      }
+      return `${this.siteSettings.rootURL}${this.$route.path}`
     }
   },
   computed: {
@@ -76,9 +82,6 @@ export default {
           minutes: this.session.schedule.duration
         })
       )
-    },
-    sessionURL: function() {
-      return `${this.siteSettings.rootURL}${this.$route.path}`
     }
   }
 }
