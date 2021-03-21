@@ -39,25 +39,11 @@
 </template>
 
 <script>
-// import {
-//   DropDown,
-//   NavbarToggleButton,
-//   Navbar,
-//   NavLink
-// } from '~/components/nowUI'
-// import { Popover } from 'element-ui'
 export default {
   name: 'main-navbar',
   props: {
     transparent: Boolean,
     colorOnScroll: Number
-  },
-  components: {
-    // DropDown,
-    // Navbar,
-    // NavbarToggleButton,
-    // NavLink,
-    // [Popover.name]: Popover
   }
 }
 </script>

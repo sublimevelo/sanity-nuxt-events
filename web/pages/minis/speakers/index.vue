@@ -30,27 +30,6 @@
               </b-media>
             </b-list-group-item>
           </b-list-group>
-          <!-- <div v-for="person in people" :key="person._id">
-            <b-link :href="'#' + person.slug.current">
-              <b-media vertical-align="center" class="mb-2">
-                <template #aside>
-                  <b-img
-                    :src="
-                      $urlFor(person.image)
-                        .width(60)
-                        .height(60)
-                        .url()
-                    "
-                    alt="placeholder"
-                  ></b-img>
-                </template>
-                <h2 class="h6 mt-0 mb-0">{{ $personName(person) }}</h2>
-                <p>
-                  <small>{{ person.title }}, {{ person.institution }}</small>
-                </p>
-              </b-media>
-            </b-link>
-          </div> -->
         </b-col>
       </b-row>
       <b-row
@@ -87,16 +66,6 @@
                   >{{ session.title }}</b-list-group-item
                 >
               </b-list-group>
-            </b-col>
-          </b-row>
-          <b-row>
-            <b-col sm="7"> </b-col>
-            <b-col sm="5">
-              <!-- <ul>
-                <li v-for="session in person.sessions" :key="session._id">
-                  {{ session.title }}
-                </li>
-              </ul> -->
             </b-col>
           </b-row>
         </b-col>
