@@ -43,9 +43,9 @@
               <h2>
                 {{ $personName(person) }}
               </h2>
-              <p>
+              <div>
                 <SocialLinks :socials="person.socials" />
-              </p>
+              </div>
               <p class="lead">{{ person.title }}, {{ person.institution }}</p>
               <BlockContent :blocks="person.bio" />
             </b-col>
