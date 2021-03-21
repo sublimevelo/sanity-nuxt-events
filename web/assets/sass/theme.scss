@@ -1,6 +1,13 @@
 @import 'variables';
 @import 'now-ui-kit/variables';
 
+.row {
+  margin-bottom: 30px;
+  .banner & {
+    margin-bottom: 0;
+  }
+}
+
 h2,
 .h2 {
   font-size: 2em;
@@ -28,5 +35,14 @@ h2,
     .nav-link:focus {
       color: #fff;
     }
+    .nav-link:hover {
+      color: #ddd;
+    }
   }
+}
+
+.list-group-item.active {
+  background-color: #f8f9fa;
+  color: #111;
+  border-color: $light-blue;
 }
