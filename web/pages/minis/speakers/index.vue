@@ -8,7 +8,7 @@
             <b-list-group-item
               v-for="person in people"
               :key="person._id"
-              :href="'#' + person.slug.current"
+              :to="'#' + person.slug.current"
             >
               <b-media vertical-align="center">
                 <template #aside>
