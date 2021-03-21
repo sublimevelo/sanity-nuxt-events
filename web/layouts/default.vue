@@ -1,8 +1,15 @@
 <template>
-  <div>
+  <div id="top">
     <main-navbar></main-navbar>
     <nuxt />
     <!-- <main-footer></main-footer> -->
+    <div class="action backToTop" @click="toTop()">
+      <b-icon
+        icon="arrow-up"
+        class="h2 rounded bg-primary p-1 mb-0"
+        variant="light"
+      ></b-icon>
+    </div>
   </div>
 </template>
 <script>
@@ -12,7 +19,18 @@ export default {
   components: {
     MainNavbar
     // MainFooter
+  },
+  methods: {
+    toTop() {
+      window.scrollTo(0, 0)
+    }
   }
 }
 </script>
-<style></style>
+<style>
+.action.backToTop {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+}
+</style>
