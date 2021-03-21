@@ -1,11 +1,12 @@
 module.exports = {
-  /*
-   ** Headers of the page
-   */
+  target: 'static', // default is 'server'
   router: {
     base: '/',
     linkExactActiveClass: 'active'
   },
+  /*
+   ** Headers of the page
+   */
   head: {
     title: 'LEAD Philanthropy',
     meta: [
